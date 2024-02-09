@@ -436,6 +436,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:job_dekho_app/Jdx_screens/Dashbord.dart';
+import 'package:job_dekho_app/Jdx_screens/PickPort/SupportNewScreen.dart';
 import 'package:job_dekho_app/Model/WalletHistoryModel.dart';
 import 'package:job_dekho_app/Views/payment_success_screen.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -492,7 +493,7 @@ class _PaymentMethod1State extends State<PaymentMethod1> {
       var result = await response.stream.bytesToString();
       var finalRsult  =  jsonDecode(result);
       if(type == 'Cash On Delivery'){
-        Fluttertoast.showToast(msg: 'Booked successfully') ;
+        Fluttertoast.showToast(msg: 'Booking successfully') ;
       }else{
         Fluttertoast.showToast(msg: '${finalRsult['message']}') ;
       }
@@ -551,6 +552,7 @@ class _PaymentMethod1State extends State<PaymentMethod1> {
       backgroundColor: primaryColor,
       body: Column(
         children: [
+          SizedBox(height: 25,),
           Expanded(
             flex: 2,
             child: Padding(
@@ -572,7 +574,7 @@ class _PaymentMethod1State extends State<PaymentMethod1> {
                       child: Center(child: Icon(Icons.arrow_back)),
                     ),
                   ),
-                  Text(getTranslated(context, "Payment"),style: TextStyle(color: whiteColor),),
+                  Text(getTranslated(context, "Payment"),style: TextStyle(color: whiteColor,fontSize: 16),),
                   Container(
                     height: 40,
                     width: 40,
@@ -586,7 +588,7 @@ class _PaymentMethod1State extends State<PaymentMethod1> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                  const NotificationScreen()));
+                                  const SupportNewScreen()));
                         },
                         child: Center(
                           child: Image.asset(
@@ -599,14 +601,14 @@ class _PaymentMethod1State extends State<PaymentMethod1> {
             ),
           ),
           Expanded(
-            flex: 11,
+            flex: 14,
             child: Container(
               decoration: BoxDecoration(
                   color: backGround,
                   borderRadius: BorderRadius.only(topRight: Radius.circular(50))
               ),
               child:
-              isLoading  == true ?Center(child: CircularProgressIndicator()):
+              // isLoading  == true ?Center(child: CircularProgressIndicator()):
               Container(
                   child: Column(
                     children: [

@@ -101,7 +101,7 @@ class _AddAmountState extends State<AddAmount> {
       // ),
       body:   Column(
         children: [
-          SizedBox(height: 10,),
+          SizedBox(height: 25,),
           Expanded(
             flex: 2,
             child: Padding(
@@ -123,7 +123,7 @@ class _AddAmountState extends State<AddAmount> {
                       child: Center(child: Icon(Icons.arrow_back)),
                     ),
                   ),
-                  Text(getTranslated(context, "Add Amount"),style: TextStyle(color: whiteColor),),
+                  Text(getTranslated(context, "Add Amount"),style: TextStyle(color: whiteColor,fontSize: 18),),
                   Container(
                     height: 40,
                     width: 40,
@@ -150,7 +150,7 @@ class _AddAmountState extends State<AddAmount> {
             ),
           ),
           Expanded(
-            flex: 11,
+            flex: 14,
             child: Container(
                 decoration: BoxDecoration(
                     color: backGround,

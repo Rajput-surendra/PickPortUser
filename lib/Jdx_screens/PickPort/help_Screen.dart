@@ -142,94 +142,93 @@ GetHelpModel? getHelpModel;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Scaffold(
-          backgroundColor: primaryColor,
+    return Scaffold(
+      backgroundColor: primaryColor,
 
-            body:  Column(
-              children: [
-                SizedBox(height: 10,),
-                Expanded(
-                  flex: 1,
+        body:  Column(
+          children: [
+             SizedBox(height: 25,),
+            Expanded(
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20,right: 20),
+                child: Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: (){
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            color: whiteColor,
+                            borderRadius: BorderRadius.circular(100)
+                        ),
+                        child: const Center(child: Icon(Icons.arrow_back)),
+                      ),
+                    ),
+                    Expanded(child: SizedBox(
+                      child: Center(child: Text(getTranslated(context, "GET_HELP"),style: TextStyle(color: whiteColor,fontSize: 18),)),
+                    )),
+
+                    // Container(
+                    //   height: 40,
+                    //   width: 40,
+                    //   decoration:  BoxDecoration(
+                    //       color: splashcolor,
+                    //       borderRadius:
+                    //       BorderRadius.circular(100)),
+                    //   child: InkWell(
+                    //       onTap: () {
+                    //         Navigator.push(
+                    //             context,
+                    //             MaterialPageRoute(
+                    //                 builder: (context) =>
+                    //                 const NotificationScreen()));
+                    //       },
+                    //       child: Center(
+                    //         child: Image.asset(
+                    //           'assets/ProfileAssets/support.png',scale: 1.3,
+                    //         ),
+                    //       )),
+                    // ),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 14,
+              child: Container(
+                width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: backGround,
+                      borderRadius: const BorderRadius.only(topRight: Radius.circular(50))
+                  ),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 20,right: 20),
-                    child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 32),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Text(description??""),
+                        const SizedBox(height: 10,),
                         InkWell(
                           onTap: (){
-                            Navigator.pop(context);
+                            _launchUrl(Uri.parse('$url'));
                           },
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                color: whiteColor,
-                                borderRadius: BorderRadius.circular(100)
-                            ),
-                            child: const Center(child: Icon(Icons.arrow_back)),
-                          ),
-                        ),
-                        Expanded(child: SizedBox(
-                          child: Center(child: Text(getTranslated(context, "GET_HELP"),style: TextStyle(color: whiteColor),)),
-                        )),
+                            child: Text(url??"",style: TextStyle(color: Colors.blue),)),
 
-                        // Container(
-                        //   height: 40,
-                        //   width: 40,
-                        //   decoration:  BoxDecoration(
-                        //       color: splashcolor,
-                        //       borderRadius:
-                        //       BorderRadius.circular(100)),
-                        //   child: InkWell(
-                        //       onTap: () {
-                        //         Navigator.push(
-                        //             context,
-                        //             MaterialPageRoute(
-                        //                 builder: (context) =>
-                        //                 const NotificationScreen()));
-                        //       },
-                        //       child: Center(
-                        //         child: Image.asset(
-                        //           'assets/ProfileAssets/support.png',scale: 1.3,
-                        //         ),
-                        //       )),
-                        // ),
+
                       ],
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 11,
-                  child: Container(
-                    width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: backGround,
-                          borderRadius: const BorderRadius.only(topRight: Radius.circular(50))
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 32),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(description??""),
-                            const SizedBox(height: 10,),
-                            InkWell(
-                              onTap: (){
-                                _launchUrl(Uri.parse('$url'));
-                              },
-                                child: Text(url??"",style: TextStyle(color: Colors.blue),)),
+            )
+            )
+          ],
+        ),
 
-
-                          ],
-                        ),
-                      ),
-                )
-                )
-              ],
-            ),
-
-    ));
+    );
   }
 
   late List<VideoPlayerController> _vController = [];

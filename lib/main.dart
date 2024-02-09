@@ -35,12 +35,10 @@ void main() async {
   await Firebase.initializeApp();
 
   LocalNotificationService.initialize();
-
   try {
     String? token = await FirebaseMessaging.instance.getToken();
     print("-----------token:-----${token}");
   } on FirebaseException {
-    print('__________FirebaseException_____________');
   }
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

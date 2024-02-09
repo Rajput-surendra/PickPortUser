@@ -18,12 +18,13 @@ class TermsAndConditionScreen extends StatefulWidget {
   const TermsAndConditionScreen({Key? key}) : super(key: key);
 
   @override
-  State<TermsAndConditionScreen> createState() => _TermsAndConditionScreenState();
+  State<TermsAndConditionScreen> createState() =>
+      _TermsAndConditionScreenState();
 }
 
 class _TermsAndConditionScreenState extends State<TermsAndConditionScreen> {
-
   GetTmc? gettmc;
+
   // getTermCondition() async {
   //   var headers = {
   //     'Cookie': 'ci_session=e664e18a8c1eab77c4e0e1d8f3c29c616e85d57f'
@@ -48,13 +49,13 @@ class _TermsAndConditionScreenState extends State<TermsAndConditionScreen> {
   //
   // }
 
-
   getTermCondition() async {
     var headers = {
       'Cookie': 'ci_session=99881b4987b7a73271c8992e93cee36c93506e46'
     };
-    var request = http.Request('GET', Uri.parse('${ApiPath.baseUrl}Users/TermsCondition?type=2'));
-  print('____Som______${request}_________');
+    var request = http.Request(
+        'GET', Uri.parse('${ApiPath.baseUrl}Users/TermsCondition?type=2'));
+    print('____Som______${request}_________');
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -66,12 +67,9 @@ class _TermsAndConditionScreenState extends State<TermsAndConditionScreen> {
       setState(() {
         gettmc = ResultTMC;
       });
-    }
-    else {
+    } else {
       print(response.reasonPhrase);
     }
-
-
   }
 
   // getTermCondition()async{
@@ -97,7 +95,7 @@ class _TermsAndConditionScreenState extends State<TermsAndConditionScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future.delayed(Duration(milliseconds: 300),(){
+    Future.delayed(Duration(milliseconds: 300), () {
       return getTermCondition();
     });
   }
@@ -105,22 +103,20 @@ class _TermsAndConditionScreenState extends State<TermsAndConditionScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Scaffold(
-            backgroundColor: primaryColor,
-
-            body : Column(
-          children: [
-          SizedBox(height: 10,),
-           Expanded(
-        flex: 1,
+    return Scaffold(
+      backgroundColor: primaryColor,
+      body: Column(
+    children: [
+      SizedBox(height: 25),
+      Expanded(
+        flex: 2,
         child: Padding(
-          padding: const EdgeInsets.only(left: 20,right: 20),
+          padding: const EdgeInsets.only(left: 20, right: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
-                onTap: (){
+                onTap: () {
                   Navigator.pop(context);
                 },
                 child: Container(
@@ -128,30 +124,32 @@ class _TermsAndConditionScreenState extends State<TermsAndConditionScreen> {
                   width: 40,
                   decoration: BoxDecoration(
                       color: whiteColor,
-                      borderRadius: BorderRadius.circular(100)
-                  ),
+                      borderRadius: BorderRadius.circular(100)),
                   child: Center(child: Icon(Icons.arrow_back)),
                 ),
               ),
-              Text(getTranslated(context, "Terms and Conditions"),style: TextStyle(color: whiteColor),),
+              Text(
+                getTranslated(context, "Terms and Conditions"),
+                style: TextStyle(color: whiteColor, fontSize: 18),
+              ),
               Container(
                 height: 40,
                 width: 40,
-                decoration:  BoxDecoration(
+                decoration: BoxDecoration(
                     color: splashcolor,
-                    borderRadius:
-                    BorderRadius.circular(100)),
+                    borderRadius: BorderRadius.circular(100)),
                 child: InkWell(
                     onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                              const SupportNewScreen()));
+                                  const SupportNewScreen()));
                     },
                     child: Center(
                       child: Image.asset(
-                        'assets/ProfileAssets/support.png',scale: 1.3,
+                        'assets/ProfileAssets/support.png',
+                        scale: 1.3,
                       ),
                     )),
               ),
@@ -159,25 +157,27 @@ class _TermsAndConditionScreenState extends State<TermsAndConditionScreen> {
           ),
         ),
       ),
-            Expanded(
-        flex: 11,
+      Expanded(
+        flex: 14,
         child: Container(
-            decoration: BoxDecoration(
-                color: backGround,
-                borderRadius: BorderRadius.only(topRight: Radius.circular(50))
-            ),
-            child:    gettmc ==  null || gettmc == "" ? Center(child: CircularProgressIndicator(),) : ListView(
-              //crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Html(data: "${gettmc!.data!.pgDescri}"),
-              ],
-            ),
+          decoration: BoxDecoration(
+              color: backGround,
+              borderRadius:
+                  BorderRadius.only(topRight: Radius.circular(50))),
+          child: gettmc == null || gettmc == ""
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : ListView(
+                  //crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Html(data: "${gettmc!.data!.pgDescri}"),
+                  ],
+                ),
         ),
       )
-
-      ],
-    ),
-    )
+    ],
+      ),
     );
   }
 }

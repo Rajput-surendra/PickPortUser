@@ -863,7 +863,15 @@ class _SignUpScreen extends State<SignUpScreen> {
                               child: TextFormField(
                                 maxLength: 15,
                                 controller: gstController,
-
+                                validator: (value) {
+                                  if (value != gstAddressController.text.isEmpty /*&& gstController.text.isEmpty*/ ) {
+                                    return 'Please GST Number';
+                                  }
+                                  // else if (gstController.text.length <15) {
+                                  //   return 'Please enter 15 digit';
+                                  // }
+                                  return null;
+                                },
                                 decoration:  InputDecoration(
                                     counterText: "",
                                   contentPadding: const EdgeInsets.only(top: 20, left: 8),
@@ -895,6 +903,12 @@ class _SignUpScreen extends State<SignUpScreen> {
                                   border: InputBorder.none,
                                   hintText: getTranslated(context, "GST Address"),
                                 ),
+                                validator: (value) {
+                                  if (value != gstController.text && gstAddressController.text.isEmpty) {
+                                    return 'Please Enter GST Address';
+                                  }
+                                  return null;
+                                },
 
                               ),
                             ),
@@ -994,9 +1008,13 @@ class _SignUpScreen extends State<SignUpScreen> {
                             return;
                           }
                           if(isTerm == false){
-                            Fluttertoast.showToast(msg: " please agree to all terms and conditions and privacy policy");
+                            Fluttertoast.showToast(msg: " Please agree to all T&C and Privacy Policy");
+                            // return;
                           }
-                          signUpApi();
+                          else{
+                            signUpApi();
+                          }
+
                         }
 
                       },

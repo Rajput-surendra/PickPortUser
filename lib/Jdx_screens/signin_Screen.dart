@@ -274,10 +274,12 @@ class _SignInScreenState extends State<SignInScreen> {
       var finalResult =  jsonDecode(result);
       if(finalResult['status'] == false){
         Fluttertoast.showToast(msg: "${finalResult['message']}");
+       // Fluttertoast.showToast(msg: "Mobile no. is not register Please go to signUp");
       }else{
         mobileOtp =  finalResult['data']['otp'];
         mobileNo =  finalResult['data']['user_phone'];
         setState(() {
+         // Fluttertoast.showToast(msg: "Mobile no. is not register Please go to signUp");
           Fluttertoast.showToast(msg: "${finalResult['message']}");
         });
         Navigator.push(context, MaterialPageRoute(builder: (context)=>VerrifyScreen(mobile: mobileNo,otp: mobileOtp,)));
@@ -656,10 +658,13 @@ class _SignInScreenState extends State<SignInScreen> {
                                     keyboardType: TextInputType.number,
                                     controller: mobileController,
                                     decoration: InputDecoration(
-
-                                      prefixText: "+91  ",
+                                      prefixIcon: const Padding(
+                                        padding: EdgeInsets.only(top: 11,left: 15),
+                                        child: Text("+91",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black,fontSize: 16),),
+                                      ),
+                                     // prefixText: "+91  ",
                                       counterText: "",
-                                      contentPadding: const EdgeInsets.only(top: 10,left: 5),
+                                      contentPadding: const EdgeInsets.only(top: 12,),
                                       border: const OutlineInputBorder(
                                           borderSide: BorderSide.none),
                                       hintText: getTranslated(

@@ -15,6 +15,7 @@ String paymentIcons = "assets/DrawerAssets/Payment.png";
 String faqIcons = "assets/DrawerAssets/FAQs.png";
 String signoutIconR = "assets/DrawerAssets/signoutIcon.png";
 String referAndEran = "assets/DrawerAssets/Refer and earn.png";
+String aboutUs = "assets/DrawerAssets/about.png";
 
 
 //Job Seeker Drawer Screen Icons

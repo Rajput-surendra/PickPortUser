@@ -71,9 +71,9 @@ class _MyWalletState extends State<MyWallet> {
   Widget build(BuildContext context) {
     return Scaffold(
    backgroundColor: primaryColor,
-      body:  Column(
+      body:Column(
         children: [
-          SizedBox(height: 10,),
+          SizedBox(height: 25,),
           Expanded(
             flex: 2,
             child: Padding(
@@ -95,7 +95,7 @@ class _MyWalletState extends State<MyWallet> {
                       child: Center(child: Icon(Icons.arrow_back)),
                     ),
                   ),
-                  Text(getTranslated(context, "Pickport Wallet"),style: TextStyle(color: whiteColor),),
+                  Text(getTranslated(context, "Pickport Wallet"),style: TextStyle(color: whiteColor,fontSize: 18),),
                   Container(
                     height: 40,
                     width: 40,
@@ -122,7 +122,7 @@ class _MyWalletState extends State<MyWallet> {
             ),
           ),
           Expanded(
-            flex: 11,
+            flex: 14,
             child: Container(
                 decoration: BoxDecoration(
                     color: backGround,

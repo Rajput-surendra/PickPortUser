@@ -65,7 +65,7 @@ class _TripDetailsState extends State<TripDetails> {
       backgroundColor: primaryColor,
       body:   Column(
         children: [
-          SizedBox(height: 10,),
+          SizedBox(height: 20,),
           Expanded(
             flex: 2,
             child: Padding(
@@ -88,7 +88,7 @@ class _TripDetailsState extends State<TripDetails> {
                           child: Icon(Icons.arrow_back,color: primaryColor,)
                         )),
                   ),
-                  Text(getTranslated(context, "Trip Details"),style: TextStyle(color: whiteColor),),
+                  Text(getTranslated(context, "Trip Details"),style: TextStyle(color: whiteColor,fontSize: 18),),
                   Container(
                     height: 40,
                     width: 40,
@@ -115,7 +115,7 @@ class _TripDetailsState extends State<TripDetails> {
             ),
           ),
           Expanded(
-            flex: 10,
+            flex: 14,
             child: Container(
               decoration: BoxDecoration(
                   color: backGround,
@@ -408,7 +408,7 @@ class _TripDetailsState extends State<TripDetails> {
                                       ),
                                     ),
                                     SizedBox(width: 5,),
-                                    Expanded(
+                                    tripDetailsModel!.data!.first.status == "4" ?  Expanded(
                                       child: InkWell(
                                         onTap: (){
                                           Navigator.push(context, MaterialPageRoute(builder: (context)=>SelcetVhicle(orderId: tripDetailsModel!.data!.first.orderId ?? "",)));
@@ -421,7 +421,7 @@ class _TripDetailsState extends State<TripDetails> {
                                           child: Center(child: Text("Book Again",style: TextStyle(color: whiteColor),)),
                                         ),
                                       ),
-                                    ),
+                                    ):SizedBox.shrink()
                                   ],
                                 )
 

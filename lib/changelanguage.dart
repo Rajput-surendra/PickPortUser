@@ -221,93 +221,90 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
     return Scaffold(
       backgroundColor:primaryColor,
       appBar: AppBar(backgroundColor:primaryColor ,
-        toolbarHeight: 60,
+        toolbarHeight: 80,
         centerTitle: true,
+
         title: bottomsheetLabel("CHOOSE_LANGUAGE_LBL",),
         elevation: 0,
       ),
-      body: SafeArea(
-        top: true,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(topRight: Radius.circular(80)),
-              color: backGround
-            ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: Form(
-                        key: _changePwdKey,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(height: 30,),
-                            StatefulBuilder(
-                              builder:
-                                  (BuildContext context, StateSetter setModalState) {
-                                return SingleChildScrollView(
-                                  child: Container(
-                                    child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: getLngList(context, setModalState)),
-                                  ),
-                                );
-                              },
-                            ),
-                          ],
+      body: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(topRight: Radius.circular(80)),
+          color: backGround
+        ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: Form(
+                    key: _changePwdKey,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        SizedBox(height: 30,),
+                        StatefulBuilder(
+                          builder:
+                              (BuildContext context, StateSetter setModalState) {
+                            return SingleChildScrollView(
+                              child: Container(
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: getLngList(context, setModalState)),
+                              ),
+                            );
+                          },
                         ),
-                      ),
+                      ],
                     ),
-                    InkWell(
-                      onTap: (){
-                        print('____Som______${widget.isTrue}_________');
-                        if(widget.isTrue == true){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>MyStatefulWidget()));
-                        }
-                        else{
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>SignInScreen()));
-                        }
-
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 60,
-
-                          decoration: BoxDecoration(
-                              color:primaryColor ,
-                              borderRadius: BorderRadius.circular(10)
-                          ),
-                          child: Card(
-                              color:primaryColor ,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                              elevation: 2,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Center(
-                                  child: Text(
-                                    getTranslated(context,'CONTINUES'),
-                                    style: Theme.of(context).textTheme.caption!.copyWith(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w800,
-                                        color: whiteColor
-                                    ),
-                                  ),
-                                ),
-                              )
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              )
-          )
+                InkWell(
+                  onTap: (){
+                    print('____Som______${widget.isTrue}_________');
+                    if(widget.isTrue == true){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>MyStatefulWidget()));
+                    }
+                    else{
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>SignInScreen()));
+                    }
 
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 60,
+                      //
+                      // decoration: BoxDecoration(
+                      //     color:primaryColor ,
+                      //     borderRadius: BorderRadius.circular(10)
+                      // ),
+                      child: Card(
+                          color:primaryColor ,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          elevation: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Text(
+                                getTranslated(context,'CONTINUES'),
+                                style: Theme.of(context).textTheme.caption!.copyWith(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w800,
+                                    color: whiteColor
+                                ),
+                              ),
+                            ),
+                          )
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
       ),
     );
   }

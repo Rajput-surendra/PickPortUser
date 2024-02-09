@@ -153,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 6,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: _currentPost == i ?  primaryColor : primaryColor,
+              color: _currentPost == i ?  primaryColor :Secondry,
             ),
           ),
         );
@@ -452,7 +452,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: const BorderRadius.only(topRight: Radius.circular(50))
                   ),
                   child:
-                  Padding(
+                 Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ListView(
                       shrinkWrap: true,
@@ -461,7 +461,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            bannerModel == null ? const Center(child: CircularProgressIndicator()):   CarouselSlider(
+                            bannerModel == null ? const Center(child: CircularProgressIndicator()):  bannerModel?.amount?.isEmpty ?? false ?Center(child: Text("No Banner Found!!")):  CarouselSlider(
                                 items: bannerModel?.amount?.map(
                                       (item) => Stack(
                                       alignment: Alignment.center,

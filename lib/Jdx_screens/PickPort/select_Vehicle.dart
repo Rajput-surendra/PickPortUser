@@ -84,7 +84,7 @@ class _SelcetVhicleState extends State<SelcetVhicle> {
       backgroundColor: primaryColor,
       body: Column(
         children: [
-          SizedBox(height: 10,),
+          SizedBox(height: 25,),
           Expanded(
             flex: 2,
             child: Padding(
@@ -133,7 +133,7 @@ class _SelcetVhicleState extends State<SelcetVhicle> {
             ),
           ),
           Expanded(
-            flex: 11,
+            flex: 14,
             child: Container(
               decoration: BoxDecoration(
                   color: backGround,
@@ -248,7 +248,7 @@ class _SelcetVhicleState extends State<SelcetVhicle> {
                               ),
                               child:Column(
                                 children: [
-                                  vehicleDataModelList == null ? Center(child: CircularProgressIndicator()): Container(
+                                  vehicleDataModelList?.deliveryFee == null?  Center(child: Text("No Vehicle Found!! ")):Container(
                                     child: ListView.builder(
                                       shrinkWrap: true,
                                       physics: NeverScrollableScrollPhysics(),
@@ -428,7 +428,7 @@ class _SelcetVhicleState extends State<SelcetVhicle> {
                                     child: InkWell(
                                         onTap: () {
                                           if(selectedIndex == -1){
-                                            Fluttertoast.showToast(msg: "Please select atleast one");
+                                            Fluttertoast.showToast(msg: "Please Select Your Vehicle");
 
                                           }else{
                                             Navigator.push(context, MaterialPageRoute(builder: (context)=>ReviewBookingScreen(dropLocation: widget.dropLocation,picLocation: widget.picLocation,

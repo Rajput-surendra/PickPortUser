@@ -159,11 +159,11 @@ class _VerrifyScreenState extends State<VerrifyScreen> {
       backgroundColor: primaryColor,
       body:  Column(
         children: [
-          SizedBox(height: 10,),
+          SizedBox(height: 25,),
           Expanded(
             flex: 2,
             child: Padding(
-              padding: const EdgeInsets.only(left: 20,right: 20),
+              padding: const EdgeInsets.only(left: 10,right: 20),
               child: Row(
 
                 children: [
@@ -181,15 +181,22 @@ class _VerrifyScreenState extends State<VerrifyScreen> {
                       child: Center(child: Icon(Icons.arrow_back)),
                     ),
                   ),
-                  SizedBox(width: 20,),
-                  Text(getTranslated(context, "Verification"),style: TextStyle(color: whiteColor),),
+
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: Container(
+
+                          child: Center(child: Text(getTranslated(context, "Verification"),style: TextStyle(color: whiteColor,fontSize: 18),))),
+                    ),
+                  ),
 
                 ],
               ),
             ),
           ),
           Expanded(
-            flex: 10,
+            flex: 14,
             child: Container(
                 decoration: BoxDecoration(
                     color: backGround,

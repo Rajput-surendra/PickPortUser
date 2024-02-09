@@ -216,7 +216,7 @@ class _RegistParcelScreenState extends State<RegistParcelScreen> {
       backgroundColor: primaryColor,
       body: Column(
         children: [
-          SizedBox(height: 10,),
+          SizedBox(height: 25,),
           Expanded(
             flex: 2,
             child: Padding(
@@ -238,7 +238,7 @@ class _RegistParcelScreenState extends State<RegistParcelScreen> {
                       child: Center(child: Icon(Icons.arrow_back)),
                     ),
                   ),
-                 Text("Location",style: TextStyle(color: whiteColor,),),
+                 Text("Location",style: TextStyle(color: whiteColor,fontSize: 18),),
                   Container(
                     height: 40,
                     width: 40,
@@ -265,7 +265,7 @@ class _RegistParcelScreenState extends State<RegistParcelScreen> {
             ),
           ),
           Expanded(
-            flex: 11,
+            flex: 14,
             child: Container(
               decoration: BoxDecoration(
                   color: backGround,
@@ -427,7 +427,8 @@ class _RegistParcelScreenState extends State<RegistParcelScreen> {
                                         //_getLocation2();
                                       },
                                       textInputAction: TextInputAction.next,
-                                      decoration: const InputDecoration(
+                                      decoration:  InputDecoration(
+                                        hintText: getTranslated(context, "Search Your Drop Location"),
                                         border: OutlineInputBorder(
                                             borderSide: BorderSide.none
                                         ),

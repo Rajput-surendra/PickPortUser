@@ -113,10 +113,13 @@ String? mId;
   // }
   bool isLoading =  false;
   senParcel() async {
+    print(_value.toString()+"+++++++++++++++");
+    var data=_value.toString();
+    receiverList.clear();
    if(receiverList.isEmpty){
      receiverList.add(
-
          {
+
           "meterial_category": "${selectedValue.toString()}",
            //"parcel_weight": "${selectedValue.toString()}",
            "parcel_weight": "",
@@ -126,13 +129,16 @@ String? mId;
            "receiver_name": "${recipientNameController.text}",
            "receiver_phone": "${recipientMobileController.text}",
            "reciver_full_address": "${homeController.text}",
-           "booking_type":"${_value}",
-           "booking_date":_value == 0 ? date.toString(): picUpController.text,
-           "booking_time": _value == 0 ? time.toString():picTimeController.text,
-           "pacel_value" : ""
-         });
-   }
+           "booking_type":_value.toString(),
+           "booking_date":_value.toString() == "0" ? "${getDate()}":picUpController.text,
+           "booking_time": _value.toString() == "0" ? "${getTime()}":picTimeController.text,
+           "pacel_value" : "",
 
+         });
+
+
+   }
+    print(_value.toString()+"+++++++++++++++");
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? userid = prefs.getString('userid');
@@ -324,6 +330,19 @@ String? mId;
 
        });
    }
+   getDate(){
+     DateTime now = DateTime.now();
+     String formattedDateTime = "${now.year}-${now.month}-${now.day} ${now.hour}:${now.minute}:${now.second}";
+     // date =  formattedDateTime.substring(0,11);
+     return formattedDateTime.substring(0,9);
+   }
+   getTime(){
+     DateTime now = DateTime.now();
+     String formattedDateTime = "${now.year}-${now.month}-${now.day} ${now.hour}:${now.minute}:${now.second}";
+     // date =  formattedDateTime.substring(0,11);
+     // time =  formattedDateTime.substring(9,14);
+     return formattedDateTime.substring(10,15);
+   }
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
@@ -331,12 +350,13 @@ String? mId;
      date =  formattedDateTime.substring(0,11);
       time =  formattedDateTime.substring(9,14);
     print('____Som__sssssss____${formattedDateTime}____${time}_____');
+
     // Data data = materialCategoryModel!.data![0].title;
     return Scaffold(
       backgroundColor: primaryColor,
       body: Column(
         children: [
-          SizedBox(height: 10,),
+          SizedBox(height: 25,),
           Expanded(
             flex: 2,
             child: Padding(
@@ -358,7 +378,7 @@ String? mId;
                       child: Center(child: Icon(Icons.arrow_back)),
                     ),
                   ),
-                  Text("Booking Details",style: TextStyle(color: whiteColor),),
+                  Text("Booking Details",style: TextStyle(color: whiteColor,fontSize: 18),),
                  //Text(getTranslated(context, "orders"),style: TextStyle(color: whiteColor),),
                   Container(
                     height: 40,
@@ -386,7 +406,7 @@ String? mId;
             ),
           ),
           Expanded(
-            flex: 11,
+            flex: 14,
             child: Container(
               decoration: BoxDecoration(
                   color: backGround,
@@ -936,7 +956,11 @@ String? mId;
                                         groupValue: _value,
                                         onChanged: (int? value) {
                                           setState(() {
-                                            _value = value!;
+
+                                            _value = value??0;
+                                            print('____Som_rrr_____${_value}_________');
+                                            picUpController.text="";
+                                            picTimeController.text="";
                                             isCurrent = false;
                                           });
                                         },
@@ -953,11 +977,14 @@ String? mId;
                                           activeColor: Secondry,
                                           groupValue: _value,
                                           onChanged: (int? value) {
+                                            print("onTap");
                                             setState(() {
-                                              _value = value!;
+                                              _value = value??1;
+                                              print('____Som_rrrr_____${_value}_________');
                                               isCurrent = true;
                                             });
                                           }),
+
                                       // SizedBox(width: 10.0,),
                                       Text(
                                         getTranslated(context, "Schedule Booking"),
@@ -967,7 +994,8 @@ String? mId;
                                   ),
                                   const SizedBox(height: 5,),
 
-                                  _value  == 1 ? Padding(
+                                  _value  == 1 ?
+                                  Padding(
                                     padding: const EdgeInsets.only(right: 20),
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1531,7 +1559,7 @@ String? mId;
        widget.dropLocation = "${bookingSingleDataModel?.data?.receiverAddress.toString()}";
        picTimeController.text = "${bookingSingleDataModel?.data?.bookingTime.toString()}";
        picUpController.text = "${bookingSingleDataModel?.data?.bookingDate.toString()}";
-       _value =int.parse( "${bookingSingleDataModel?.data?.bookingType.toString()}");
+      // _value =int.parse( "${bookingSingleDataModel?.data?.bookingType.toString()}");
 
        catIdString = materialCategoryModel?.data?.firstWhere((item) {
          if(item.id == bookingSingleDataModel?.data?.meterialCategory){

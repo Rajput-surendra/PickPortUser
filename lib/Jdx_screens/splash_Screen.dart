@@ -35,15 +35,15 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
       controller1?.repeat(
         min: 0,
         max: 53,
-        period: const Duration(seconds: 5),
+        period: const Duration(seconds: 15),
       );
     });
-    Future.delayed(Duration(seconds: 3),(){
+    Future.delayed(Duration(seconds: 15),(){
       return checkLogin();
     });
 
 
-    Future.delayed(Duration(seconds: 5),() async {
+    Future.delayed(Duration(seconds: 8),() async {
       if(userid == null || userid == ""){
         print('____Som______${userid}_________');
 
@@ -63,9 +63,9 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Center(
-          child: Image.asset("assets/splash.gif"),
-        )
+        body: SizedBox(
+          width:double.infinity,
+            child: Image.asset("assets/userPickPortgif.gif",fit: BoxFit.fill,))
         
         // Container(
         //   width: double.infinity,

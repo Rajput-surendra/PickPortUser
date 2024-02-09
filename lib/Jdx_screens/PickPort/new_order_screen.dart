@@ -36,15 +36,18 @@ class _NewOrderHistroyState extends State<NewOrderHistroy> {
       backgroundColor: primaryColor,
       body: Column(
         children: [
-          SizedBox(height: 10,),
+          const SizedBox(height: 25,),
           Expanded(
             flex: 2,
             child: Padding(
-              padding: const EdgeInsets.only(left: 20,right: 20),
+              padding: const EdgeInsets.only(left: 40,right: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(getTranslated(context, "Orders"),style: TextStyle(color: whiteColor),),
+                  Expanded(
+                    child: SizedBox(
+                        child: Center(child: Text(getTranslated(context, "Orders"),style: TextStyle(color: whiteColor,fontSize: 18),))),
+                  ),
                   Container(
                     height: 40,
                     width: 40,
@@ -71,20 +74,20 @@ class _NewOrderHistroyState extends State<NewOrderHistroy> {
             ),
           ),
           Expanded(
-            flex: 10,
+            flex: 13,
             child: Container(
               decoration: BoxDecoration(
                   color: backGround,
-                  borderRadius: BorderRadius.only(topRight: Radius.circular(50))
+                  borderRadius: const BorderRadius.only(topRight: Radius.circular(50))
               ),
               child:
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child:parcelhistory == null ?
-                Center(child: CircularProgressIndicator())
+                const Center(child: CircularProgressIndicator())
                     :
                 parcelhistory!.data!.isEmpty ?
-                Center(child: Text(" No Parcel History"))
+                const Center(child: Text(" No Parcel History"))
                     :
                 ListView.builder(
                   // reverse: true,
@@ -124,21 +127,21 @@ class _NewOrderHistroyState extends State<NewOrderHistroy> {
                             trailing: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 Text("${parcelhistory!.data![index].deliveryTimeFrom}"),
                                 parcelhistory!.data![index].parcelDetails!.status == "4" ?
-                                      Text("Completed",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold),
+                                      const Text("Completed",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold),
                                 ):
                                 parcelhistory!.data![index].parcelDetails!.status == "0" ||  parcelhistory!.data![index].parcelDetails!.status == "6"  ?
-                                      Text("Pending",style: TextStyle(color:Colors.yellow,fontWeight: FontWeight.bold),
+                                      const Text("Pending",style: TextStyle(color:Colors.yellow,fontWeight: FontWeight.bold),
 
                                 ): parcelhistory!.data![index].parcelDetails!.status == "2" ?
-                                Text("Accepted ",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold),
+                                const Text("Accepted ",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold),
                                 ):
-                                      Text("Cancelled",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),
+                                      const Text("Cancelled",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),
 
                                 ),
-                                SizedBox(width: 5,),
+                                const SizedBox(width: 5,),
 
                               ],
                             )
@@ -163,7 +166,7 @@ class _NewOrderHistroyState extends State<NewOrderHistroy> {
                                             'assets/revice.png',scale: 1.1,
                                           ),
                                         ),
-                                        SizedBox(width: 5,),
+                                        const SizedBox(width: 5,),
                                         Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
@@ -173,7 +176,7 @@ class _NewOrderHistroyState extends State<NewOrderHistroy> {
                                             Row(
                                               children: [
                                                 Text("${parcelhistory!.data![index].parcelDetails!.senderName}",overflow: TextOverflow.ellipsis,maxLines: 1,),
-                                                Text(","),
+                                                const Text(","),
                                                 Text("${parcelhistory!.data![index].phoneNo}",overflow: TextOverflow.ellipsis,maxLines: 1,),
                                               ],
                                             ),
@@ -216,7 +219,7 @@ class _NewOrderHistroyState extends State<NewOrderHistroy> {
                                               child: Row(
                                                 children: [
                                                   Text("${parcelhistory!.data![index].parcelDetails!.receiverName}",overflow: TextOverflow.ellipsis,maxLines: 1,),
-                                                Text(","),
+                                                const Text(","),
                                                   Text("${parcelhistory!.data![index].parcelDetails!.receiverPhone}",overflow: TextOverflow.ellipsis,maxLines: 1,),
                                                 ],
                                               ),
@@ -228,7 +231,7 @@ class _NewOrderHistroyState extends State<NewOrderHistroy> {
                                         )
                                       ],
                                     ),
-                                    SizedBox(height: 15,),
+                                    const SizedBox(height: 15,),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
@@ -244,19 +247,19 @@ class _NewOrderHistroyState extends State<NewOrderHistroy> {
                                                     width: 150,
                                                     child: AlertDialog(
 
-                                                      title: Text("Cancel Trip"),
+                                                      title: const Text("Cancel Trip"),
                                                       content:
                                                         Container(
                                                           height: 50,
                                                           child: TextFormField(
                                                             controller: messegeC,
-                                                            decoration: InputDecoration(
+                                                            decoration: const InputDecoration(
                                                                 border: OutlineInputBorder()
                                                             ),
                                                           ),
                                                         ),
                                                       actions: <Widget>[
-                                                      Text("Are you sure you want to Cancel trip the booking?"),
+                                                      const Text("Are you sure you want to Cancel trip the booking?"),
                                                        Row(
                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                          children: [
@@ -288,9 +291,9 @@ class _NewOrderHistroyState extends State<NewOrderHistroy> {
                                               child: Center(child: Text("Cancel",style: TextStyle(color: whiteColor),)),
                                             ),
                                           ),
-                                        ): SizedBox.shrink(),
-                                        SizedBox(width: 5,),
-                                        Expanded(
+                                        ): const SizedBox.shrink(),
+                                        const SizedBox(width: 5,),
+                                        parcelhistory!.data![index].parcelDetails!.status == "4" ?  Expanded(
                                           child: InkWell(
                                             onTap: (){
                                               String? Name = parcelhistory!.data![index].parcelDetails!.orderId ?? "";
@@ -305,7 +308,7 @@ class _NewOrderHistroyState extends State<NewOrderHistroy> {
                                               child: Center(child: Text("Book Again",style: TextStyle(color: whiteColor),)),
                                             ),
                                           ),
-                                        ),
+                                        ):const SizedBox.shrink()
                                       ],
                                     )
                                   ],
@@ -347,7 +350,7 @@ class _NewOrderHistroyState extends State<NewOrderHistroy> {
     if (response.statusCode == 200) {
       var result = await response.stream.bytesToString();
       var resultFinal = jsonDecode(result);
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>MyStatefulWidget()));
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>const MyStatefulWidget()));
       setState(() {
         Fluttertoast.showToast(msg: "${resultFinal['message']}");
       });
@@ -529,7 +532,7 @@ class _NewOrderHistroyState extends State<NewOrderHistroy> {
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Order Cancel successfully')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Order Cancel successfully')));
 
       parcelhistory?.data?.removeAt(i) ;
       setState(() {

@@ -176,6 +176,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
   TextEditingController oldpswController = TextEditingController();
   TextEditingController newpswController = TextEditingController();
+  TextEditingController confirmController = TextEditingController();
 
   SnackBar snackBar = const SnackBar(
     content: Text('Password Change Successfully',),
@@ -222,11 +223,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return SafeArea(child: Scaffold(
+    return Scaffold(
       backgroundColor: primaryColor,
       body:  Column(
         children: [
-          SizedBox(height: 10,),
+          SizedBox(height: 25,),
           Expanded(
             flex: 2,
             child: Padding(
@@ -248,7 +249,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       child: Center(child: Icon(Icons.arrow_back)),
                     ),
                   ),
-                  Text(getTranslated(context, "Change Password"),style: TextStyle(color: whiteColor),),
+                  Text(getTranslated(context, "Change Password"),style: TextStyle(color: whiteColor,fontSize: 18),),
                   Container(
                     height: 40,
                     width: 40,
@@ -275,7 +276,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             ),
           ),
           Expanded(
-            flex: 11,
+            flex: 14,
             child: Container(
                 decoration: BoxDecoration(
                     color: backGround,
@@ -308,7 +309,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                 EdgeInsets.only(top: 8),
                                 border:  OutlineInputBorder(
                                     borderSide: BorderSide.none),
-                                hintText: 'New Password',
+                                hintText: 'Old Password',
                                 prefixIcon: Image.asset(
                                   'assets/AuthAssets/Icon ionic-ios-lock.png',
                                   scale: 1.3,
@@ -332,7 +333,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                               ),
                               validator: (v) {
                                 if (v!.isEmpty) {
-                                  return "New Password is required";
+                                  return "Enter Your Old Password";
                                 }
                               },
 
@@ -361,7 +362,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                 EdgeInsets.only(top: 8),
                                 border:  OutlineInputBorder(
                                     borderSide: BorderSide.none),
-                                hintText: "Confirm Password",
+                                hintText: "New Password",
                                 prefixIcon: Image.asset(
                                   'assets/AuthAssets/Icon ionic-ios-lock.png',
                                   scale: 1.3,
@@ -385,6 +386,63 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                               ),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
+                                  return 'Enter Your New Password';
+                                }
+                                // else if (value != newpswController.text) {
+                                //   return 'Passwords do not match';
+                                // }
+                                return null;
+                              },
+
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            //set border radius more than 50% of height and width to make circle
+                          ),
+                          child: Container(
+                            height: 60,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: CustomColors.TransparentColor),
+                            child: TextFormField(
+                              controller: confirmController,
+                              obscureText: isVisible1 ? false : true,
+
+                              decoration: InputDecoration(
+                                contentPadding:
+                                EdgeInsets.only(top: 8),
+                                border:  OutlineInputBorder(
+                                    borderSide: BorderSide.none),
+                                hintText: getTranslated(
+                                    context, "confirmPassword"),
+                                prefixIcon: Image.asset(
+                                  'assets/AuthAssets/Icon ionic-ios-lock.png',
+                                  scale: 1.3,
+                                  color: Secondry,
+                                ),
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      isVisible1 ? isVisible1 = false : isVisible1 = true;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    isVisible1
+                                        ? Icons.remove_red_eye
+                                        : Icons.visibility_off,
+                                    color: Colors.green,
+                                  ),
+                                ),
+
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
                                   return 'Please confirm your password';
                                 } else if (value != newpswController.text) {
                                   return 'Passwords do not match';
@@ -395,7 +453,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 40,),
+                        const SizedBox(
+                          height: 40,
+                        ),
                         CustomTextButton(buttonText: getTranslated(context, "Save"), onTap: (){
                           if(_formKey.currentState!.validate()){
                             if(newpswController.text == ""){
@@ -403,7 +463,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                               return;
                             }if(oldpswController.text == ""){
                               Fluttertoast.showToast(msg: "Please enter old password");
-                            }else{
+                            }if(confirmController.text == ""){
+                              Fluttertoast.showToast(msg: "Please enter Confirm password");
+                            }
+                            else{
                               changePassword();
                             }
                           }
@@ -480,6 +543,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       //     ),
       //   ),
       // ),
-    ));
+    );
   }
 }

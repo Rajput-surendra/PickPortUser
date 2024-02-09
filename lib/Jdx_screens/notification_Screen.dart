@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:job_dekho_app/Helper/session.dart';
+import 'package:job_dekho_app/Jdx_screens/PickPort/SupportNewScreen.dart';
 
 import 'package:job_dekho_app/Utils/api_path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -65,9 +66,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
           backgroundColor: primaryColor,
           body: Column(
             children: [
-              SizedBox(height: 10,),
+
               Expanded(
-                flex: 1,
+                flex: 2,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20,right: 20),
                   child: Row(
@@ -87,7 +88,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                           child: Center(child: Icon(Icons.arrow_back)),
                         ),
                       ),
-                      Text(getTranslated(context, "Notification"),style: TextStyle(color: whiteColor),),
+                      Text(getTranslated(context, "Notification"),style: TextStyle(color: whiteColor,fontSize: 18),),
                       Container(
                         height: 40,
                         width: 40,
@@ -101,7 +102,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                      const NotificationScreen()));
+                                      const SupportNewScreen()));
                             },
                             child: Center(
                               child: Image.asset(
@@ -114,7 +115,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 ),
               ),
               Expanded(
-                flex: 11,
+                flex: 13,
                 child: Container(
                     decoration: BoxDecoration(
                         color: backGround,

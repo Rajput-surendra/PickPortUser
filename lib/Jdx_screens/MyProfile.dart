@@ -209,18 +209,17 @@ class _DrawerScreenState extends State<DrawerScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return SafeArea(child: Scaffold(
-
+    return Scaffold(
         backgroundColor: primaryColor,
       body:  Column(
         children: [
-          SizedBox(height: 10,),
+          SizedBox(height: 25,),
           Expanded(
-            flex: 1,
+            flex: 2,
             child: Padding(
-              padding: const EdgeInsets.only(left: 20,right: 10),
+              padding: const EdgeInsets.only(left: 50,right: 30),
               child: Row(
-               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // InkWell(
                   //   onTap: (){
@@ -236,9 +235,10 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   //     child: Center(child: Icon(Icons.arrow_back)),
                   //   ),
                   // ),
-                  SizedBox(width: 110,),
-                  Text(getTranslated(context, "My Account"),style: TextStyle(color: whiteColor,fontSize: 18),),
-                  SizedBox(width: 52,),
+                  Expanded(
+                    child: SizedBox(
+                        child: Center(child: Text(getTranslated(context, "My Account"),style: TextStyle(color: whiteColor,fontSize: 18),))),
+                  ),
                   Container(
                     height: 40,
                     width: 40,
@@ -264,9 +264,8 @@ class _DrawerScreenState extends State<DrawerScreen> {
               ),
             ),
           ),
-          SizedBox(height: 10,),
           Expanded(
-            flex: 11,
+            flex: 14,
             child: Container(
                 decoration: BoxDecoration(
                     color: backGround,
@@ -336,10 +335,10 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                               ),
                                               child:getprofile?.data?[0].userImage != null ? ClipRRect(
                                                   borderRadius: BorderRadius.circular(100),
-                                                  child:Image.network("${getprofile?.data?[0].userImage}")) : Image.asset('assets/ProfileAssets/sampleprofile.png'),
+                                                  child:Image.network("${getprofile?.data?[0].userImage}",fit: BoxFit.fill,)) : Image.asset('assets/ProfileAssets/sampleprofile.png'),
                                             ) :
                                             Container(
-                                              width: 100,
+                                              width: double.infinity,
                                               height: 100,
                                               decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
@@ -408,7 +407,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           CustomDrawerTile(tileName: getTranslated(context, "Refer and earn"), tileIcon: Image.asset(referAndEran,color: Secondry, scale: 1.3,),onTap: (){Get.to(ReferAndEranScreen());},),
                         //  CustomDrawerTile(tileName: 'Parcel History ', tileIcon: Icon(Icons.history_sharp,color: primaryColor,),onTap: (){Get.to(ParcelHistory());},),
                           CustomDrawerTile(tileName: getTranslated(context, "Change Password"), tileIcon: Image.asset(changepasswordIconR,color: Secondry, scale: 1.3,), onTap: (){Get.to(ChangePasswordScreen(isTrue: true,));},),
-                          CustomDrawerTile(tileName: getTranslated(context, "CHANGE_LANGUAGE_LBL"), tileIcon: Image.asset(changeLanguage,color: Secondry, scale: 1.3,),onTap: (){Get.to(ChangeLanguage(isTrue: true,));},),
+                          CustomDrawerTile(tileName: getTranslated(context, "CHANGE_LANGUAGE_LBL"), tileIcon: Image.asset(changeLanguage,color: Secondry, scale: 1.6,),onTap: (){Get.to(ChangeLanguage(isTrue: true,));},),
 
                           // CustomDrawerTile(tileName: 'Support', tileIcon: Image.asset(shareappIconR,color: primaryColor, scale: 1.3,),onTap: (){Get.to(share());},),
                           ///  CustomDrawerTile(tileName: 'Support', tileIcon: Image.asset(shareappIconR,color: primaryColor, scale: 1.3,),onTap: (){Get.to(SupportScreens());},),
@@ -419,7 +418,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           CustomDrawerTile(tileName: getTranslated(context, "Terms and Conditions"), tileIcon: Image.asset(termsandconditionIconR,color: Secondry, scale: 1.3,),onTap: (){Get.to(TermsAndConditionScreen());},),
 
                           CustomDrawerTile(tileName: getTranslated(context, "FAQS"), tileIcon: Image.asset(faqIcons,color: Secondry, scale: 1.3,),onTap: (){Get.to(FaqScreen());},),
-                          CustomDrawerTile(tileName: getTranslated(context, "AboutUs"), tileIcon: Image.asset(notificationIconR, scale: 1.3,color: Secondry,),onTap: (){Get.to(AboutUsScreen());}),
+                          CustomDrawerTile(tileName: getTranslated(context, "AboutUs"), tileIcon: Image.asset(aboutUs, scale: 1.3,color: Secondry,),onTap: (){Get.to(AboutUsScreen());}),
                           CustomDrawerTile(tileName: getTranslated(context, "Delete Account"), tileIcon: Icon(Icons.delete,color: Secondry,),onTap: (){Get.to(deleteAccountDailog());},),
                           //  CustomDrawerTile(tileName: 'Contact Us', tileIcon: Image.asset(contactusIconR,color: primaryColor, scale: 1.3,), onTap: (){Get.to(const ContactUsScreen());},),
                           // CustomDrawerTile(tileName: 'Sign Out', tileIcon: Image.asset(signoutIconR,color: primaryColor, scale: 1.3,),onTap: (){
@@ -463,7 +462,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
       ),
 
 
-    ));
+    );
   }
 
   deleteAccountDailog() async {
