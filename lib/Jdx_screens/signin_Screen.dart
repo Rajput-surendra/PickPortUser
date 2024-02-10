@@ -190,7 +190,7 @@ class _SignInScreenState extends State<SignInScreen> {
     setState(() {
       token = fcmToken.toString();
     });
-    print("FCM ID Is______________ $token");
+    print("FCM ID Is___xxx___________ $token");
   }
 
   // String? userid;
@@ -205,7 +205,7 @@ class _SignInScreenState extends State<SignInScreen> {
     request.fields.addAll({
       'email': '${emailController.text}',
       'password': '${passwordController.text}',
-      'token': token.toString(),
+      'firebaseToken':token.toString()
     });
     print("Checking all fields here ${request.fields}");
     request.headers.addAll(headers);
@@ -263,7 +263,8 @@ class _SignInScreenState extends State<SignInScreen> {
     };
     var request = http.MultipartRequest('POST', Uri.parse('${ApiPath.baseUrl}Authentication/login'));
     request.fields.addAll({
-     'mobile':mobileController.text
+     'mobile':mobileController.text,
+      'firebaseToken':token.toString()
     });
     debugPrint(request.fields.toString() + "jjjjj");
     request.headers.addAll(headers);

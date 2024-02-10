@@ -309,12 +309,10 @@ class _RegistParcelScreenState extends State<RegistParcelScreen> {
                                   elevation: 1,
                                   borderRadius: BorderRadius.circular(10),
                                   child: SizedBox(
-                                    width: MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 1.2,
-                                    height: 60,
+
+                                  width: MediaQuery.of(context).size.width / 1.2,
                                     child: TextFormField(
+
                                       validator: (value) {
                                         if (value == null || value.isEmpty) {
                                           return 'Please Enter Sender Address';
@@ -323,7 +321,7 @@ class _RegistParcelScreenState extends State<RegistParcelScreen> {
                                       },
                                       readOnly: true,
                                       controller: senderAddressCtr,
-                                      maxLines: 1,
+                                      maxLines: 2,
                                       onTap: () {
                                         //_getLocation1();
 
@@ -344,8 +342,7 @@ class _RegistParcelScreenState extends State<RegistParcelScreen> {
                                                 });
                                                 Navigator.of(context).pop();
                                               },
-                                              initialPosition: LatLng(
-                                                  22.719568,75.857727),
+                                              initialPosition: LatLng(22.719568,75.857727),
                                               useCurrentLocation: true,
                                             ),
                                           ),
@@ -387,7 +384,7 @@ class _RegistParcelScreenState extends State<RegistParcelScreen> {
                                         .of(context)
                                         .size
                                         .width / 1.2,
-                                    height: 60,
+                                    // height: 60,
                                     child: TextFormField(
 
                                       validator: (value) {
@@ -398,7 +395,7 @@ class _RegistParcelScreenState extends State<RegistParcelScreen> {
                                       },
                                       readOnly: true,
                                       controller: recipientAddressCtr,
-                                      maxLines: 1,
+                                        maxLines: 2,
                                       onTap: () {
                                         Navigator.push(
                                           context,

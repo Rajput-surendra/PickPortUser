@@ -139,7 +139,7 @@ class _TripDetailsState extends State<TripDetails> {
                             Text("Completed",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold),
 
                             ):
-                            tripDetailsModel!.data!.first.status == "0" ||  tripDetailsModel!.data!.first.status== "6"  ?
+                            tripDetailsModel!.data!.first.status == "0"  ?
                             Text("Pending",style: TextStyle(color:Colors.yellow,fontWeight: FontWeight.bold),
                             ):
                             tripDetailsModel!.data!.first.status == "2" ?
@@ -161,7 +161,7 @@ class _TripDetailsState extends State<TripDetails> {
                           children: [
                             tripDetailsModel!.data!.first.uniqueId == null ?const Text("No Id Found!!"):   Text("Vehicle No: ${tripDetailsModel!.data!.first.uniqueId }",style: TextStyle(
                             color: Colors.black,fontWeight: FontWeight.bold)),
-
+                            tripDetailsModel!.data!.first.status == "6"  ? Text("₹ 0.0",style: TextStyle(color: backColor,fontWeight: FontWeight.bold,fontFamily: "lora"),):
                             Text("₹ ${tripDetailsModel!.data!.first.totalAmount}",style: TextStyle(
                               color: Colors.black,fontWeight: FontWeight.bold,fontFamily: "lora"
                             ),),
@@ -199,10 +199,7 @@ class _TripDetailsState extends State<TripDetails> {
                                     children: [
 
                                       Text("${tripDetailsModel!.data!.first.driverDetails!.cabName}"),
-
-                                      Text("Vicicle Name"),
-
-                                      Text("${tripDetailsModel!.data!.first.deliveryTimeFrom}"),
+                                      Text("${tripDetailsModel!.data!.first.bookingTime}"),
                                     ],
                                   )
                                 ],
@@ -235,7 +232,7 @@ class _TripDetailsState extends State<TripDetails> {
                                       ),
                                       Container(
                                           width: 250,
-                                          child: Text("${tripDetailsModel!.data!.first.senderFulladdress}",overflow: TextOverflow.ellipsis,maxLines: 1,)),
+                                          child: Text("${tripDetailsModel!.data!.first.senderFulladdress}",overflow: TextOverflow.ellipsis,maxLines: 3,)),
                                     ],
                                   )
 
@@ -279,7 +276,7 @@ class _TripDetailsState extends State<TripDetails> {
                                       ),
                                       Container(
                                           width: 220,
-                                          child: Text("${tripDetailsModel!.data!.first.receiverAddress}",overflow: TextOverflow.ellipsis,maxLines: 1,)),
+                                          child: Text("${tripDetailsModel!.data!.first.receiverAddress}",overflow: TextOverflow.ellipsis,maxLines: 3,)),
                                     ],
                                   )
                                 ],
@@ -298,7 +295,7 @@ class _TripDetailsState extends State<TripDetails> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                              Text("Delivery Boys Details",style: TextStyle(
+                              Text("Driver Partner Details",style: TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),),
                                 tripDetailsModel!.data!.first.driverName == null ? Center(child: Text("No Delivery Boys")) :Row(
@@ -355,7 +352,7 @@ class _TripDetailsState extends State<TripDetails> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text("Parcel Weight",style: TextStyle(color: backColor,fontWeight: FontWeight.bold),),
+                                    Text(getTranslated(context, "Parcel Weight (Total)"),style: TextStyle(color: backColor,fontWeight: FontWeight.bold),),
                                     Text("${tripDetailsModel!.data!.first.materialInfo!.parcelWeight} kg",),
                                   ],
                                 ),

@@ -128,6 +128,16 @@ class _BookingConfirmScreenState extends State<BookingConfirmScreen> {
               color: Colors.white,
               child: Column(
                 children: [
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: IconButton(onPressed:(){
+                      setState(() {
+                        isOpen = false;
+                      });
+                    }, icon: Icon(Icons.clear)),
+                  ),
+                  SizedBox(height: 5,),
+
                   Padding(
                     padding:
                     const EdgeInsets.all(8.0),
@@ -193,6 +203,7 @@ class _BookingConfirmScreenState extends State<BookingConfirmScreen> {
                       ),
                     ),
                   ),
+
                   if (selectedStatus == 'My Reason Is Not In The List')
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -224,30 +235,10 @@ class _BookingConfirmScreenState extends State<BookingConfirmScreen> {
                         ),
                       ],
                     ),
-                  SizedBox(height: 5,),
+                  SizedBox(height: 10,),
                   selectedStatus == null ? SizedBox.shrink():    Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      InkWell(
-                        onTap: (){
-                          setState(() {
-                            isOpen = false;
-                          });
-
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: primaryColor,
-                            borderRadius: BorderRadius.circular(10)
-                          ),
-                          width: 80,
-                          height: 40,
-
-                          child: Center(child: Text("No",style: TextStyle(
-                            color: Colors.white
-                          ),)),
-                        ),
-                      ),
                       InkWell(
                         onTap: (){
                           setState(() {
@@ -263,8 +254,7 @@ class _BookingConfirmScreenState extends State<BookingConfirmScreen> {
                           ),
                           width: 80,
                           height: 40,
-
-                          child: Center(child: Text("Yes",style: TextStyle(
+                          child: Center(child: Text("Submit",style: TextStyle(
                               color: Colors.white
                           ),)),
                         ),

@@ -1,6 +1,6 @@
 /// status : true
 /// message : "vehicle List"
-/// data : {"cap_name":"2 wheeler Non Gear","image":"https://developmentalphawizz.com/pickport/uploads/cap/image16.png","cap_id":"6","fee_id":"5","min_amount":"0","max_amount":"10","min_weight":"20","max_weight":"30","fee_charge":"80","category_name":"Agricultural Equipment","receiver_name":"cggxdg","receiver_phone":"5868688986"}
+/// data : {"cap_name":"2 wheeler Gear","image":"https://developmentalphawizz.com/pickport/uploads/cap/image121.png","cap_id":"1","fee_id":"23","min_amount":"0","max_amount":"0.13","min_weight":"5","max_weight":"10","fee_charge":"50","category_name":"Ceramic","receiver_name":"gdhffv","receiver_phone":"9589599959","on_date":"2024-02-09","delivery_time":"07:34:44pm"}
 
 class GetVehicleModel {
   GetVehicleModel({
@@ -43,18 +43,20 @@ GetVehicleModel copyWith({  bool? status,
 
 }
 
-/// cap_name : "2 wheeler Non Gear"
-/// image : "https://developmentalphawizz.com/pickport/uploads/cap/image16.png"
-/// cap_id : "6"
-/// fee_id : "5"
+/// cap_name : "2 wheeler Gear"
+/// image : "https://developmentalphawizz.com/pickport/uploads/cap/image121.png"
+/// cap_id : "1"
+/// fee_id : "23"
 /// min_amount : "0"
-/// max_amount : "10"
-/// min_weight : "20"
-/// max_weight : "30"
-/// fee_charge : "80"
-/// category_name : "Agricultural Equipment"
-/// receiver_name : "cggxdg"
-/// receiver_phone : "5868688986"
+/// max_amount : "0.13"
+/// min_weight : "5"
+/// max_weight : "10"
+/// fee_charge : "50"
+/// category_name : "Ceramic"
+/// receiver_name : "gdhffv"
+/// receiver_phone : "9589599959"
+/// on_date : "2024-02-09"
+/// delivery_time : "07:34:44pm"
 
 class Data {
   Data({
@@ -69,7 +71,9 @@ class Data {
       String? feeCharge, 
       String? categoryName, 
       String? receiverName, 
-      String? receiverPhone,}){
+      String? receiverPhone, 
+      String? onDate, 
+      String? deliveryTime,}){
     _capName = capName;
     _image = image;
     _capId = capId;
@@ -82,6 +86,8 @@ class Data {
     _categoryName = categoryName;
     _receiverName = receiverName;
     _receiverPhone = receiverPhone;
+    _onDate = onDate;
+    _deliveryTime = deliveryTime;
 }
 
   Data.fromJson(dynamic json) {
@@ -97,6 +103,8 @@ class Data {
     _categoryName = json['category_name'];
     _receiverName = json['receiver_name'];
     _receiverPhone = json['receiver_phone'];
+    _onDate = json['on_date'];
+    _deliveryTime = json['delivery_time'];
   }
   String? _capName;
   String? _image;
@@ -110,6 +118,8 @@ class Data {
   String? _categoryName;
   String? _receiverName;
   String? _receiverPhone;
+  String? _onDate;
+  String? _deliveryTime;
 Data copyWith({  String? capName,
   String? image,
   String? capId,
@@ -122,6 +132,8 @@ Data copyWith({  String? capName,
   String? categoryName,
   String? receiverName,
   String? receiverPhone,
+  String? onDate,
+  String? deliveryTime,
 }) => Data(  capName: capName ?? _capName,
   image: image ?? _image,
   capId: capId ?? _capId,
@@ -134,6 +146,8 @@ Data copyWith({  String? capName,
   categoryName: categoryName ?? _categoryName,
   receiverName: receiverName ?? _receiverName,
   receiverPhone: receiverPhone ?? _receiverPhone,
+  onDate: onDate ?? _onDate,
+  deliveryTime: deliveryTime ?? _deliveryTime,
 );
   String? get capName => _capName;
   String? get image => _image;
@@ -147,6 +161,8 @@ Data copyWith({  String? capName,
   String? get categoryName => _categoryName;
   String? get receiverName => _receiverName;
   String? get receiverPhone => _receiverPhone;
+  String? get onDate => _onDate;
+  String? get deliveryTime => _deliveryTime;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -162,6 +178,8 @@ Data copyWith({  String? capName,
     map['category_name'] = _categoryName;
     map['receiver_name'] = _receiverName;
     map['receiver_phone'] = _receiverPhone;
+    map['on_date'] = _onDate;
+    map['delivery_time'] = _deliveryTime;
     return map;
   }
 

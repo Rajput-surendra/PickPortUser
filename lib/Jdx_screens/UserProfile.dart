@@ -121,6 +121,8 @@ class _UserProfileState extends State<UserProfile> {
   //   );
   //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
   // }
+
+  final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
     // TODO: implement initState
@@ -225,583 +227,616 @@ class _UserProfileState extends State<UserProfile> {
     return Scaffold(
         backgroundColor: primaryColor,
 
-        body:  Column(
-          children: [
-           SizedBox(height: 25,),
-            Expanded(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20,right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                      onTap: (){
-                        Navigator.pop(context);
-                      },
-                      child: Container(
+        body:  Form(
+          key: _formKey,
+          child: Column(
+            children: [
+             SizedBox(height: 25,),
+              Expanded(
+                flex: 2,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20,right: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: (){
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                              color: whiteColor,
+                              borderRadius: BorderRadius.circular(100)
+                          ),
+                          child: const Center(child: Icon(Icons.arrow_back)),
+                        ),
+                      ),
+                      Text(getTranslated(context, "My Profile"),style: TextStyle(color: whiteColor,fontSize: 18),),
+                      Container(
                         height: 40,
                         width: 40,
-                        decoration: BoxDecoration(
-                            color: whiteColor,
-                            borderRadius: BorderRadius.circular(100)
-                        ),
-                        child: const Center(child: Icon(Icons.arrow_back)),
+                        decoration:  BoxDecoration(
+                            color: splashcolor,
+                            borderRadius:
+                            BorderRadius.circular(100)),
+                        child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                      const SupportNewScreen()));
+                            },
+                            child: Center(
+                              child: Image.asset(
+                                'assets/ProfileAssets/support.png',scale: 1.3,
+                              ),
+                            )),
                       ),
-                    ),
-                    Text(getTranslated(context, "My Profile"),style: TextStyle(color: whiteColor,fontSize: 18),),
-                    Container(
-                      height: 40,
-                      width: 40,
-                      decoration:  BoxDecoration(
-                          color: splashcolor,
-                          borderRadius:
-                          BorderRadius.circular(100)),
-                      child: InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                    const SupportNewScreen()));
-                          },
-                          child: Center(
-                            child: Image.asset(
-                              'assets/ProfileAssets/support.png',scale: 1.3,
-                            ),
-                          )),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 14,
-              child: Container(
-                  decoration: BoxDecoration(
-                      color: backGround,
-                      borderRadius: const BorderRadius.only(topRight: Radius.circular(50),)
-                  ),
-                  child:
-                  SingleChildScrollView(
-                      child:
-                      // seekerProfileModel == null  || addJobDataModel == null  ? Center(child: CircularProgressIndicator(),) :
-                      Column(
+              Expanded(
+                flex: 14,
+                child: Container(
+                    decoration: BoxDecoration(
+                        color: backGround,
+                        borderRadius: const BorderRadius.only(topRight: Radius.circular(50),)
+                    ),
+                    child:
+                    SingleChildScrollView(
+                        child:
+                        // seekerProfileModel == null  || addJobDataModel == null  ? Center(child: CircularProgressIndicator(),) :
+                        Column(
 
-                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        // crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 5,),
-                          GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) {
-                                    return Container(
-                                      height: 250,
-                                      decoration: const BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(10),
-                                              topLeft: Radius.circular(10))),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          const Text("    Take Image From",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 15)),
-                                          ListTile(
-                                            leading: Image.asset(
-                                              'assets/ProfileAssets/cameraicon.png',
-                                              scale: 1.5,
-                                            ),
-                                            title: const Text('Camera',
+                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          // crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 5,),
+                            GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    context: context,
+                                    builder: (context) {
+                                      return Container(
+                                        height: 250,
+                                        decoration: const BoxDecoration(
+                                            borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(10),
+                                                topLeft: Radius.circular(10))),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            const Text("    Take Image From",
                                                 style: TextStyle(
-                                                    fontWeight: FontWeight.bold)),
-                                            onTap: () {
-                                              _getFromCamera();
-                                            },
-                                          ),
-                                          ListTile(
-                                            leading: Image.asset(
-                                              'assets/ProfileAssets/galleryicon.png',
-                                              scale: 1.5,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 15)),
+                                            ListTile(
+                                              leading: Image.asset(
+                                                'assets/ProfileAssets/cameraicon.png',
+                                                scale: 1.5,
+                                              ),
+                                              title: const Text('Camera',
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold)),
+                                              onTap: () {
+                                                _getFromCamera();
+                                              },
                                             ),
-                                            title: const Text('Gallery',
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold)),
-                                            onTap: () {
-                                              _getFromGallery();
-                                            },
-                                          ),
-                                          ListTile(
-                                            leading: Image.asset(
-                                              'assets/ProfileAssets/cancelicon.png',
-                                              scale: 1.5,
+                                            ListTile(
+                                              leading: Image.asset(
+                                                'assets/ProfileAssets/galleryicon.png',
+                                                scale: 1.5,
+                                              ),
+                                              title: const Text('Gallery',
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold)),
+                                              onTap: () {
+                                                _getFromGallery();
+                                              },
                                             ),
-                                            title: const Text('Cancel',
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold)),
-                                            onTap: () {
-                                              Navigator.pop(context);
-                                            },
-                                          )
-                                        ],
-                                      ),
-                                    );
-                                  });
-                            },
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Stack(
-                                children: [
-                                  imageFile == null
-                                      ? Container(
-                                    width: 120,
-                                    height: 120,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: whiteColor),
-                                    child: ClipRRect(
+                                            ListTile(
+                                              leading: Image.asset(
+                                                'assets/ProfileAssets/cancelicon.png',
+                                                scale: 1.5,
+                                              ),
+                                              title: const Text('Cancel',
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold)),
+                                              onTap: () {
+                                                Navigator.pop(context);
+                                              },
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    });
+                              },
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Stack(
+                                  children: [
+                                    imageFile == null
+                                        ? Container(
+                                      width: 120,
+                                      height: 120,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: whiteColor),
+                                      child: ClipRRect(
+                                          borderRadius:
+                                          BorderRadius.circular(100),
+                                          child: Image.network(
+                                            "${widget.getprofile?.data?.first.userImage}",
+                                            fit: BoxFit.fill,
+                                          )),
+                                    )
+                                        :  Container(
+                                      width: 120,
+                                      height: 120,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: whiteColor),
+                                      child: ClipRRect(
                                         borderRadius:
                                         BorderRadius.circular(100),
-                                        child: Image.network(
-                                          "${widget.getprofile?.data?.first.userImage}",
+                                        child: Image.file(
+                                          imageFile ?? File(''),
                                           fit: BoxFit.fill,
-                                        )),
-                                  )
-                                      :  Container(
-                                    width: 120,
-                                    height: 120,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: whiteColor),
-                                    child: ClipRRect(
-                                      borderRadius:
-                                      BorderRadius.circular(100),
-                                      child: Image.file(
-                                        imageFile ?? File(''),
-                                        fit: BoxFit.fill,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Positioned(
-                                    bottom: 20,
-                                    right: 10,
-                                    child: Container(
-                                      width: 30,
-                                      height: 30,
-                                      decoration: const BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle),
-                                      child: Image.asset(
-                                        'assets/ProfileAssets/camera_Icon.png',
-                                        scale: 1.8,
+                                    Positioned(
+                                      bottom: 20,
+                                      right: 10,
+                                      child: Container(
+                                        width: 30,
+                                        height: 30,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.white,
+                                            shape: BoxShape.circle),
+                                        child: Image.asset(
+                                          'assets/ProfileAssets/camera_Icon.png',
+                                          scale: 1.8,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
 
-                          const SizedBox(
-                            height: 30,
-                          ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Column(
-                            children: [
-                              Card(
-                                elevation: 1,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Container(
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: CustomColors.TransparentColor),
-                                  child: TextFormField(
-                                    controller: nameController,
-                                    keyboardType: TextInputType.name,
-                                    decoration:  InputDecoration(
-                                      prefixIcon: const Padding(
-                                        padding: EdgeInsets.only(top: 15),
-                                        child: Icon(
-                                          Icons.person,
-                                          color: CustomColors.accentColor,
-                                        ),
-                                      ),
-                                      contentPadding: const EdgeInsets.only(top: 20, left: 5),
-                                      border: InputBorder.none,
-                                      hintText: getTranslated(context, "Name"),
-                                    ),
-
+                            const SizedBox(
+                              height: 30,
+                            ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Column(
+                              children: [
+                                Card(
+                                  elevation: 1,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              Card(
-                                elevation: 1,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Container(
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: CustomColors.TransparentColor),
-                                  child: TextFormField(
-                                    maxLength: 10,
-                                    readOnly: true,
-                                    controller: mobileController,
-                                    keyboardType: TextInputType.phone,
-                                    decoration:  InputDecoration(
-                                      counterText: "",
-                                      prefixIcon: const Padding(
-                                        padding: EdgeInsets.only(top: 15),
-                                        child: Icon(
-                                          Icons.call,
-                                          color: CustomColors.accentColor,
-                                        ),
-                                      ),
-                                      contentPadding: const EdgeInsets.only(top: 18, left: 5),
-                                      border: InputBorder.none,
-                                      hintText: getTranslated(context, "ENTER_MOBILE"),
-                                    ),
-
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  //set border radius more than 50% of height and width to make circle
-                                ),
-                                child: Container(
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: CustomColors.TransparentColor),
-                                  child: TextFormField(
-                                    controller: emailController,
-                                    keyboardType: TextInputType.emailAddress,
-                                    decoration:  InputDecoration(
-                                      prefixIcon: const Padding(
-                                        padding: EdgeInsets.only(top: 15),
-                                        child: Icon(
-                                          Icons.email,
-                                          color: CustomColors.accentColor,
-                                        ),
-                                      ),
-                                      contentPadding: const EdgeInsets.only(top: 18, left: 5),
-                                      border: InputBorder.none,
-                                      hintText: getTranslated(context, "Entre_Email"),
-                                    ),
-
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  //set border radius more than 50% of height and width to make circle
-                                ),
-                                elevation: 1,
-                                child: Container(
+                                  child: Container(
                                     height: 60,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
                                         color: CustomColors.TransparentColor),
-                                    child: Row(
-                                      children: [
-                                        const Expanded(
-                                            flex: 1,
-                                            child: Padding(
-                                              padding: EdgeInsets.only(left: 13),
-                                              child: Icon(
-                                                Icons.location_city,
-                                                color: CustomColors.accentColor,
-                                              ),
-                                            )),
-                                        Expanded(
-                                          flex: 10,
-                                          child: DropdownButtonHideUnderline(
-                                            child: DropdownButton2<dynamic>(
-                                              isExpanded: true,
-                                              //hint:  Text(getTranslated(context, "State"),
-                                              hint: const Text(
-                                                "State",
-                                                style: TextStyle(
-                                                    color: Colors.black54,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontSize: 18),
-                                              ),
-                                              value: stateidstring,
-
-                                              // icon:  Icon(Icons.keyboard_arrow_down_rounded,  color:Secondry,size: 25,),
-                                              style:  TextStyle(
-                                                  color: Secondry,
-                                                  fontWeight: FontWeight.bold),
-                                              underline: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 0, top: 4),
-                                                child: Container(
-                                                  // height: 2,
-                                                  color: whiteColor,
-                                                ),
-                                              ),
-                                              onChanged: ( value) {
-                                                setState(() {
-                                                  stateidstring = value!;
-                                                  //  stateId = getCityList?.stateId;
-                                                  getCityApi(value.stateId!);
-                                                  //animalCountApi(animalCat!.id);
-                                                });
-                                              },
-                                              items: getStatusModel?.data?.map((items) {
-                                                return DropdownMenuItem(
-                                                  value: items,
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                    children: [
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(
-                                                            top: 2),
-                                                        child: Container(
-                                                            child: Padding(
-                                                              padding:
-                                                              const EdgeInsets.only(
-                                                                  top: 0),
-                                                              child: Text(
-                                                                items.stateName.toString(),
-                                                                overflow:
-                                                                TextOverflow.ellipsis,
-                                                                style: const TextStyle(
-                                                                    color: Colors.black54),
-                                                              ),
-                                                            )),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                );
-                                              }).toList(),
-                                            ),
+                                    child: TextFormField(
+                                      controller: nameController,
+                                      keyboardType: TextInputType.name,
+                                      decoration:  InputDecoration(
+                                        prefixIcon: const Padding(
+                                          padding: EdgeInsets.only(top: 15),
+                                          child: Icon(
+                                            Icons.person,
+                                            color: CustomColors.accentColor,
                                           ),
                                         ),
-                                      ],
+                                        contentPadding: const EdgeInsets.only(top: 20, left: 5),
+                                        border: InputBorder.none,
+                                        hintText: getTranslated(context, "Name"),
+                                      ),
+
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                Card(
+                                  elevation: 1,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Container(
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: CustomColors.TransparentColor),
+                                    child: TextFormField(
+                                      maxLength: 10,
+                                      readOnly: true,
+                                      controller: mobileController,
+                                      keyboardType: TextInputType.phone,
+                                      decoration:  InputDecoration(
+                                        counterText: "",
+                                        prefixIcon: const Padding(
+                                          padding: EdgeInsets.only(top: 15),
+                                          child: Icon(
+                                            Icons.call,
+                                            color: CustomColors.accentColor,
+                                          ),
+                                        ),
+                                        contentPadding: const EdgeInsets.only(top: 18, left: 5),
+                                        border: InputBorder.none,
+                                        hintText: getTranslated(context, "ENTER_MOBILE"),
+                                      ),
+
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    //set border radius more than 50% of height and width to make circle
+                                  ),
+                                  child: Container(
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: CustomColors.TransparentColor),
+                                    child: TextFormField(
+                                      controller: emailController,
+                                      keyboardType: TextInputType.emailAddress,
+                                      decoration:  InputDecoration(
+                                        prefixIcon: const Padding(
+                                          padding: EdgeInsets.only(top: 15),
+                                          child: Icon(
+                                            Icons.email,
+                                            color: CustomColors.accentColor,
+                                          ),
+                                        ),
+                                        contentPadding: const EdgeInsets.only(top: 18, left: 5),
+                                        border: InputBorder.none,
+                                        hintText: getTranslated(context, "Entre_Email"),
+                                      ),
+
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    //set border radius more than 50% of height and width to make circle
+                                  ),
+                                  elevation: 1,
+                                  child: Container(
+                                      height: 60,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: CustomColors.TransparentColor),
+                                      child: Row(
+                                        children: [
+                                          const Expanded(
+                                              flex: 1,
+                                              child: Padding(
+                                                padding: EdgeInsets.only(left: 13),
+                                                child: Icon(
+                                                  Icons.location_city,
+                                                  color: CustomColors.accentColor,
+                                                ),
+                                              )),
+                                          Expanded(
+                                            flex: 10,
+                                            child: DropdownButtonHideUnderline(
+                                              child: DropdownButton2<dynamic>(
+                                                isExpanded: true,
+                                                //hint:  Text(getTranslated(context, "State"),
+                                                hint: const Text(
+                                                  "State",
+                                                  style: TextStyle(
+                                                      color: Colors.black54,
+                                                      fontWeight: FontWeight.w500,
+                                                      fontSize: 18),
+                                                ),
+                                                value: stateidstring,
+
+                                                // icon:  Icon(Icons.keyboard_arrow_down_rounded,  color:Secondry,size: 25,),
+                                                style:  TextStyle(
+                                                    color: Secondry,
+                                                    fontWeight: FontWeight.bold),
+                                                underline: Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      left: 0, top: 4),
+                                                  child: Container(
+                                                    // height: 2,
+                                                    color: whiteColor,
+                                                  ),
+                                                ),
+                                                onChanged: ( value) {
+                                                  setState(() {
+                                                    stateidstring = value!;
+                                                    //  stateId = getCityList?.stateId;
+                                                    getCityApi(value.stateId!);
+                                                    //animalCountApi(animalCat!.id);
+                                                  });
+                                                },
+                                                items: getStatusModel?.data?.map((items) {
+                                                  return DropdownMenuItem(
+                                                    value: items,
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                      children: [
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(
+                                                              top: 2),
+                                                          child: Container(
+                                                              child: Padding(
+                                                                padding:
+                                                                const EdgeInsets.only(
+                                                                    top: 0),
+                                                                child: Text(
+                                                                  items.stateName.toString(),
+                                                                  overflow:
+                                                                  TextOverflow.ellipsis,
+                                                                  style: const TextStyle(
+                                                                      color: Colors.black54),
+                                                                ),
+                                                              )),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                }).toList(),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      )),
+                                ),
+                                const SizedBox(height: 8,),
+                                Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    //set border radius more than 50% of height and width to make circle
+                                  ),
+                                  elevation: 1,
+                                  child: Container(
+                                      height: 60,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: CustomColors.TransparentColor),
+                                      child: Row(
+                                        children: [
+                                          const Expanded(
+                                              flex: 1,
+                                              child: Padding(
+                                                padding: EdgeInsets.only(left: 13),
+                                                child: Icon(Icons.location_city,color: CustomColors.accentColor,),
+                                              )),
+                                          Expanded(
+                                            flex: 10,
+                                            child: DropdownButtonHideUnderline(
+                                              child: DropdownButton2<dynamic>(
+                                                isExpanded: true,
+                                                hint:  Text(getTranslated(context, "City"),
+                                                  style:  const TextStyle(
+                                                      color: Colors.black54,fontSize: 18
+                                                  ),),
+                                                value: cityidstring,
+
+                                                // icon:  Icon(Icons.keyboard_arrow_down_rounded,  color:Secondry,size: 25,),
+                                                style:   TextStyle(color: Secondry,fontWeight: FontWeight.bold),
+                                                underline: Padding(
+                                                  padding: const EdgeInsets.only(left: 0,top: 4),
+                                                  child: Container(
+
+                                                    // height: 2,
+                                                    color:whiteColor,
+                                                  ),
+                                                ),
+                                                onChanged: ( value) {
+                                                  setState(() {
+                                                    cityidstring = value!;
+                                                    //cityId =  getStateList?.cityId;
+                                                    //animalCountApi(animalCat!.id);
+                                                  });
+                                                },
+                                                items: getCityModel?.data?.map((items) {
+                                                  return DropdownMenuItem<dynamic>(
+                                                    value: items,
+                                                    child:  Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children: [
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(top: 2),
+                                                          child: Container(
+
+                                                              child: Padding(
+                                                                padding: const EdgeInsets.only(top: 0),
+                                                                child: Text(items.cityName.toString(),overflow:TextOverflow.ellipsis,style: const TextStyle(color:Colors.black54),),
+                                                              )),
+                                                        ),
+
+                                                      ],
+                                                    ),
+                                                  );
+                                                })
+                                                    .toList(),
+                                              ),
+
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                  ),
+                                ),
+                                const SizedBox(height: 8,),
+                                Card(
+                                  elevation: 1,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Container(
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: CustomColors.TransparentColor),
+                                    child: TextFormField(
+                                      maxLength: 15,
+                                      controller: gstController,
+                                      keyboardType: TextInputType.name,
+                                      decoration:  InputDecoration(
+                                        counterText: "",
+                                        prefixIcon:  Padding(
+                                          padding: EdgeInsets.only(top: 8),
+                                          child: Image.asset("assets/gstNo.png",scale: 1.2,)
+                                        ),
+                                        contentPadding: const EdgeInsets.only(top: 20, left: 5),
+                                        border: InputBorder.none,
+                                       hintText: getTranslated(context, "GST Number"),
+
+                                      ),
+                                      validator: (value) {
+                                        print('____Som______${value}_________');
+                                        if (gstController.text.isNotEmpty||gstaddressController.text.isNotEmpty) {
+                                          if (gstController.text.isEmpty) {
+                                            return 'Please GST Number';
+                                          }
+                                          // else if (gstController.text.length <15) {
+                                          //   return 'Please enter 15 digit';
+                                          // }
+                                          return null;
+                                        }
+                                        return null;
+
+                                      }
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                Card(
+                                  elevation: 1,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Container(
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: CustomColors.TransparentColor),
+                                    child: TextFormField(
+                                      controller: gstaddressController,
+                                      keyboardType: TextInputType.name,
+                                      decoration:  InputDecoration(
+                                        prefixIcon:  Padding(
+                                          padding: EdgeInsets.only(top: 8),
+                                          child: Image.asset("assets/gstlo.png",scale: 1.2,)
+                                        ),
+                                        contentPadding: const EdgeInsets.only(top: 20, left: 5),
+                                        border: InputBorder.none,
+                                       hintText: getTranslated(context, "GST Address"),
+                                      ),
+                                        validator: (value) {
+                                          if (gstController.text.isNotEmpty || gstaddressController.text.isNotEmpty) {
+                                            if (gstaddressController.text.isEmpty) {
+                                              return 'Please Enter GST Address';
+                                            }
+                                            return null;
+                                          }
+                                          return null;
+                                        }
+
+                                    ),
+
+                                  ),
+                                ),
+
+                              ],
+                            ),
+                          ),
+
+                            const SizedBox(
+                              height: 30,
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 15),
+                              child: InkWell(
+                                onTap: (){
+                                  if(_formKey.currentState!.validate()){
+                                    updateProfile();
+
+                                  }
+                                  else {
+                                    Fluttertoast.showToast(msg: "Gst is required");
+                                  }
+                                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>const MyStatefulWidget()));
+                                },
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        color: primaryColor,
+                                        borderRadius: BorderRadius.circular(15)),
+                                    height: 55,
+                                    width: MediaQuery.of(context).size.width,
+                                    child:  Center(
+                                      child: Text(getTranslated(context, "Save"),
+                                        style: const TextStyle(color: Colors.white),
+                                      ),
                                     )),
                               ),
-                              const SizedBox(height: 8,),
-                              Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  //set border radius more than 50% of height and width to make circle
-                                ),
-                                elevation: 1,
-                                child: Container(
-                                    height: 60,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: CustomColors.TransparentColor),
-                                    child: Row(
-                                      children: [
-                                        const Expanded(
-                                            flex: 1,
-                                            child: Padding(
-                                              padding: EdgeInsets.only(left: 13),
-                                              child: Icon(Icons.location_city,color: CustomColors.accentColor,),
-                                            )),
-                                        Expanded(
-                                          flex: 10,
-                                          child: DropdownButtonHideUnderline(
-                                            child: DropdownButton2<dynamic>(
-                                              isExpanded: true,
-                                              hint:  Text(getTranslated(context, "City"),
-                                                style:  const TextStyle(
-                                                    color: Colors.black54,fontSize: 18
-                                                ),),
-                                              value: cityidstring,
-
-                                              // icon:  Icon(Icons.keyboard_arrow_down_rounded,  color:Secondry,size: 25,),
-                                              style:   TextStyle(color: Secondry,fontWeight: FontWeight.bold),
-                                              underline: Padding(
-                                                padding: const EdgeInsets.only(left: 0,top: 4),
-                                                child: Container(
-
-                                                  // height: 2,
-                                                  color:whiteColor,
-                                                ),
-                                              ),
-                                              onChanged: ( value) {
-                                                setState(() {
-                                                  cityidstring = value!;
-                                                  //cityId =  getStateList?.cityId;
-                                                  //animalCountApi(animalCat!.id);
-                                                });
-                                              },
-                                              items: getCityModel?.data?.map((items) {
-                                                return DropdownMenuItem<dynamic>(
-                                                  value: items,
-                                                  child:  Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    children: [
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(top: 2),
-                                                        child: Container(
-
-                                                            child: Padding(
-                                                              padding: const EdgeInsets.only(top: 0),
-                                                              child: Text(items.cityName.toString(),overflow:TextOverflow.ellipsis,style: const TextStyle(color:Colors.black54),),
-                                                            )),
-                                                      ),
-
-                                                    ],
-                                                  ),
-                                                );
-                                              })
-                                                  .toList(),
-                                            ),
-
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                ),
-                              ),
-                              const SizedBox(height: 8,),
-                              Card(
-                                elevation: 1,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Container(
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: CustomColors.TransparentColor),
-                                  child: TextFormField(
-                                    maxLength: 15,
-                                    controller: gstController,
-                                    keyboardType: TextInputType.name,
-                                    decoration:  InputDecoration(
-                                      counterText: "",
-                                      prefixIcon:  Padding(
-                                        padding: EdgeInsets.only(top: 8),
-                                        child: Image.asset("assets/gstNo.png",scale: 1.2,)
-                                      ),
-                                      contentPadding: const EdgeInsets.only(top: 20, left: 5),
-                                      border: InputBorder.none,
-                                     hintText: getTranslated(context, "GST Number"),
-                                    ),
-
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              Card(
-                                elevation: 1,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Container(
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: CustomColors.TransparentColor),
-                                  child: TextFormField(
-                                    controller: gstaddressController,
-                                    keyboardType: TextInputType.name,
-                                    decoration:  InputDecoration(
-                                      prefixIcon:  Padding(
-                                        padding: EdgeInsets.only(top: 8),
-                                        child: Image.asset("assets/gstlo.png",scale: 1.2,)
-                                      ),
-                                      contentPadding: const EdgeInsets.only(top: 20, left: 5),
-                                      border: InputBorder.none,
-                                     hintText: getTranslated(context, "GST Address"),
-                                    ),
-
-                                  ),
-                                ),
-                              ),
-
-                            ],
-                          ),
-                        ),
-
-                          const SizedBox(
-                            height: 30,
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
-                            child: InkWell(
-                              onTap: (){
-                                updateProfile();
-                                // Navigator.push(context, MaterialPageRoute(builder: (context)=>const MyStatefulWidget()));
-                              },
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      color: primaryColor,
-                                      borderRadius: BorderRadius.circular(15)),
-                                  height: 55,
-                                  width: MediaQuery.of(context).size.width,
-                                  child:  Center(
-                                    child: Text(getTranslated(context, "Save"),
-                                      style: const TextStyle(color: Colors.white),
-                                    ),
-                                  )),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          // InkWell(
-                          //   onTap: () {
-                          //
-                          //
-                          //   },
-                          //   child: Container(
-                          //     height: 50,
-                          //     width: MediaQuery.of(context).size.width / 1.4,
-                          //     alignment: Alignment.center,
-                          //     decoration: BoxDecoration(
-                          //         borderRadius: BorderRadius.circular(30),
-                          //         color: Secondry),
-                          //     child: Text(getTranslated(context, "Edit And Save"),
-                          //       style: TextStyle(
-                          //         color: Colors.black,
-                          //         fontWeight: FontWeight.bold,
-                          //         fontSize: 14,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                        ],
-                      ))
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            // InkWell(
+                            //   onTap: () {
+                            //
+                            //
+                            //   },
+                            //   child: Container(
+                            //     height: 50,
+                            //     width: MediaQuery.of(context).size.width / 1.4,
+                            //     alignment: Alignment.center,
+                            //     decoration: BoxDecoration(
+                            //         borderRadius: BorderRadius.circular(30),
+                            //         color: Secondry),
+                            //     child: Text(getTranslated(context, "Edit And Save"),
+                            //       style: TextStyle(
+                            //         color: Colors.black,
+                            //         fontWeight: FontWeight.bold,
+                            //         fontSize: 14,
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
+                          ],
+                        ))
 
-              ),
-            )
+                ),
+              )
 
-          ],
+            ],
+          ),
         ),
 
 

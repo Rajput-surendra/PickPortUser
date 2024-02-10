@@ -608,7 +608,7 @@ class _PaymentMethod1State extends State<PaymentMethod1> {
                   borderRadius: BorderRadius.only(topRight: Radius.circular(50))
               ),
               child:
-              // isLoading  == true ?Center(child: CircularProgressIndicator()):
+              isLoading  == true ?Center(child: CircularProgressIndicator()):
               Container(
                   child: Column(
                     children: [

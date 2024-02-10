@@ -189,7 +189,7 @@ class _SelcetVhicleState extends State<SelcetVhicle> {
                                            ),
                                            Container(
                                                width: 280,
-                                               child: Text("${widget.picLocation}",overflow: TextOverflow.ellipsis,maxLines: 1,)),
+                                               child: Text("${widget.picLocation}",overflow: TextOverflow.ellipsis,maxLines: 3,)),
                                          ],
                                        )
 
@@ -233,7 +233,7 @@ class _SelcetVhicleState extends State<SelcetVhicle> {
                                             ),
                                             Container(
                                                 width: 280,
-                                                child: Text("${widget.dropLocation}",overflow: TextOverflow.ellipsis,maxLines: 1,)),
+                                                child: Text("${widget.dropLocation}",overflow: TextOverflow.ellipsis,maxLines: 3,)),
                                           ],
                                         )
                                       ],

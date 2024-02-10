@@ -110,6 +110,7 @@ class _NewOrderHistroyState extends State<NewOrderHistroy> {
                         ),
                         child: Column(
                           children: [
+                            SizedBox(height: 10,),
                           ListTile(
                             leading: Card(
                               shape: RoundedRectangleBorder(
@@ -121,6 +122,7 @@ class _NewOrderHistroyState extends State<NewOrderHistroy> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text("${parcelhistory!.data![index].parcelDetails!.materialInfo!.cabName}",style: TextStyle(color: backColor,fontWeight: FontWeight.bold),),
+                                parcelhistory!.data![index].parcelDetails!.status == "6"  ? Text("₹ 0.0",style: TextStyle(color: backColor,fontWeight: FontWeight.bold,fontFamily: "lora"),):
                                 Text("₹ ${parcelhistory!.data![index].parcelDetails!.materialInfo!.price}",style: TextStyle(color: backColor,fontWeight: FontWeight.bold,fontFamily: "lora"),),
                               ],
                             ),
@@ -132,7 +134,7 @@ class _NewOrderHistroyState extends State<NewOrderHistroy> {
                                 parcelhistory!.data![index].parcelDetails!.status == "4" ?
                                       const Text("Completed",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold),
                                 ):
-                                parcelhistory!.data![index].parcelDetails!.status == "0" ||  parcelhistory!.data![index].parcelDetails!.status == "6"  ?
+                                parcelhistory!.data![index].parcelDetails!.status == "0"   ?
                                       const Text("Pending",style: TextStyle(color:Colors.yellow,fontWeight: FontWeight.bold),
 
                                 ): parcelhistory!.data![index].parcelDetails!.status == "2" ?
@@ -147,172 +149,167 @@ class _NewOrderHistroyState extends State<NewOrderHistroy> {
                             )
 
                           ),
-                            Card(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)
-                              ),
-                              child:Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      // crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          height: 30,width: 30,
-                                          child: Image.asset(
-                                            'assets/revice.png',scale: 1.1,
-                                          ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    // crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        height: 30,width: 30,
+                                        child: Image.asset(
+                                          'assets/revice.png',scale: 1.1,
                                         ),
-                                        const SizedBox(width: 5,),
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(getTranslated(context, "Pickup Location"),style: TextStyle(
-                                                fontSize: 15, color: primaryColor
-                                            ),),
-                                            Row(
+                                      ),
+                                      const SizedBox(width: 5,),
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(getTranslated(context, "Pickup Location"),style: TextStyle(
+                                              fontSize: 15, color: primaryColor
+                                          ),),
+                                          Row(
+                                            children: [
+                                              Text("${parcelhistory!.data![index].parcelDetails!.senderName}",overflow: TextOverflow.ellipsis,maxLines: 1,),
+                                              const Text(","),
+                                              Text("${parcelhistory!.data![index].phoneNo}",overflow: TextOverflow.ellipsis,maxLines: 1,),
+                                            ],
+                                          ),
+                                          Container(
+                                              width: 250,
+                                              child: Text("${parcelhistory!.data![index].parcelDetails!.senderFulladdress}",overflow: TextOverflow.ellipsis,maxLines: 3,)),
+                                        ],
+                                      )
+
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 15),
+                                    child: Dash(
+                                        direction: Axis.vertical,
+                                        length: 50,
+                                        dashLength: 2,
+                                        dashColor: primaryColor),
+                                  ),
+                                  Row(
+                                    // crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        height: 30,width: 30,
+                                        child: Image.asset(
+                                          'assets/send.png',scale: 1.1,
+                                        ),
+                                      ),
+
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(getTranslated(context, "Drop Location"),style: TextStyle(
+                                              fontSize: 15, color: primaryColor
+                                          ),),
+
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 5),
+                                            child: Row(
                                               children: [
-                                                Text("${parcelhistory!.data![index].parcelDetails!.senderName}",overflow: TextOverflow.ellipsis,maxLines: 1,),
-                                                const Text(","),
-                                                Text("${parcelhistory!.data![index].phoneNo}",overflow: TextOverflow.ellipsis,maxLines: 1,),
+                                                Text("${parcelhistory!.data![index].parcelDetails!.receiverName}",overflow: TextOverflow.ellipsis,maxLines: 1,),
+                                              const Text(","),
+                                                Text("${parcelhistory!.data![index].parcelDetails!.receiverPhone}",overflow: TextOverflow.ellipsis,maxLines: 1,),
                                               ],
                                             ),
-                                            Container(
-                                                width: 250,
-                                                child: Text("${parcelhistory!.data![index].parcelDetails!.senderFulladdress}",overflow: TextOverflow.ellipsis,maxLines: 1,)),
-                                          ],
-                                        )
-
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 15),
-                                      child: Dash(
-                                          direction: Axis.vertical,
-                                          length: 50,
-                                          dashLength: 2,
-                                          dashColor: primaryColor),
-                                    ),
-                                    Row(
-                                      // crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          height: 30,width: 30,
-                                          child: Image.asset(
-                                            'assets/send.png',scale: 1.1,
                                           ),
-                                        ),
+                                          Container(
+                                              width: 260,
+                                              child: Text("${parcelhistory!.data![index].parcelDetails!.receiverAddress}",overflow: TextOverflow.ellipsis,maxLines: 3,)),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  const SizedBox(height: 15,),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      parcelhistory!.data![index].parcelDetails!.status == "2" ?
+                                      Expanded(
+                                        child: InkWell(
+                                          onTap: (){
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return Container(
+                                                  height: 150,
+                                                  width: 150,
+                                                  child: AlertDialog(
 
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(getTranslated(context, "Drop Location"),style: TextStyle(
-                                                fontSize: 15, color: primaryColor
-                                            ),),
-
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 5),
-                                              child: Row(
-                                                children: [
-                                                  Text("${parcelhistory!.data![index].parcelDetails!.receiverName}",overflow: TextOverflow.ellipsis,maxLines: 1,),
-                                                const Text(","),
-                                                  Text("${parcelhistory!.data![index].parcelDetails!.receiverPhone}",overflow: TextOverflow.ellipsis,maxLines: 1,),
-                                                ],
-                                              ),
-                                            ),
-                                            Container(
-                                                width: 260,
-                                                child: Text("${parcelhistory!.data![index].parcelDetails!.receiverAddress}",overflow: TextOverflow.ellipsis,maxLines: 1,)),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                    const SizedBox(height: 15,),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        parcelhistory!.data![index].parcelDetails!.status == "2" ?
-                                        Expanded(
-                                          child: InkWell(
-                                            onTap: (){
-                                              showDialog(
-                                                context: context,
-                                                builder: (context) {
-                                                  return Container(
-                                                    height: 150,
-                                                    width: 150,
-                                                    child: AlertDialog(
-
-                                                      title: const Text("Cancel Trip"),
-                                                      content:
-                                                        Container(
-                                                          height: 50,
-                                                          child: TextFormField(
-                                                            controller: messegeC,
-                                                            decoration: const InputDecoration(
-                                                                border: OutlineInputBorder()
-                                                            ),
+                                                    title: const Text("Cancel Trip"),
+                                                    content:
+                                                      Container(
+                                                        height: 50,
+                                                        child: TextFormField(
+                                                          controller: messegeC,
+                                                          decoration: const InputDecoration(
+                                                              border: OutlineInputBorder()
                                                           ),
                                                         ),
-                                                      actions: <Widget>[
-                                                      const Text("Are you sure you want to Cancel trip the booking?"),
-                                                       Row(
-                                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                         children: [
-                                                           TextButton(
-                                                             onPressed: () {
-                                                               Navigator.of(context).pop(false); // Cancel exit
-                                                             },
-                                                             child: Text(getTranslated(context, "NO")),
-                                                           ),
-                                                           TextButton(
-                                                             onPressed: () {
-                                                               cancalBookingApi(parcelhistory!.data![index].parcelDetails!.orderId ?? "");
-                                                             },
-                                                             child: Text(getTranslated(context, "Yes")),
-                                                           ),
-                                                         ],
-                                                       )
-                                                      ],
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            },
-                                            child: Container(
-                                              height: 50,
-                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-                                                  color: Colors.red
-                                              ),
-                                              child: Center(child: Text("Cancel",style: TextStyle(color: whiteColor),)),
+                                                      ),
+                                                    actions: <Widget>[
+                                                    const Text("Are you sure you want to Cancel trip the booking?"),
+                                                     Row(
+                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                       children: [
+                                                         TextButton(
+                                                           onPressed: () {
+                                                             Navigator.of(context).pop(false); // Cancel exit
+                                                           },
+                                                           child: Text(getTranslated(context, "NO")),
+                                                         ),
+                                                         TextButton(
+                                                           onPressed: () {
+                                                             cancalBookingApi(parcelhistory!.data![index].parcelDetails!.orderId ?? "");
+                                                           },
+                                                           child: Text(getTranslated(context, "Yes")),
+                                                         ),
+                                                       ],
+                                                     )
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                          child: Container(
+                                            height: 50,
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
+                                                color: Colors.red
                                             ),
+                                            child: Center(child: Text("Cancel",style: TextStyle(color: whiteColor),)),
                                           ),
-                                        ): const SizedBox.shrink(),
-                                        const SizedBox(width: 5,),
-                                        parcelhistory!.data![index].parcelDetails!.status == "4" ?  Expanded(
-                                          child: InkWell(
-                                            onTap: (){
-                                              String? Name = parcelhistory!.data![index].parcelDetails!.orderId ?? "";
-                                              print('____Som______${Name}_________');
-                                              Navigator.push(context, MaterialPageRoute(builder: (context)=>SelcetVhicle(orderId: parcelhistory!.data![index].orderId ?? "",)));
-                                            },
-                                            child: Container(
-                                              height: 50,
-                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-                                                  color: primaryColor
-                                              ),
-                                              child: Center(child: Text("Book Again",style: TextStyle(color: whiteColor),)),
+                                        ),
+                                      ): const SizedBox.shrink(),
+                                      const SizedBox(width: 5,),
+                                      parcelhistory!.data![index].parcelDetails!.status == "4" ?  Expanded(
+                                        child: InkWell(
+                                          onTap: (){
+                                            String? Name = parcelhistory!.data![index].parcelDetails!.orderId ?? "";
+                                            print('____Som______${Name}_________');
+                                            Navigator.push(context, MaterialPageRoute(builder: (context)=>SelcetVhicle(orderId: parcelhistory!.data![index].orderId ?? "",)));
+                                          },
+                                          child: Container(
+                                            height: 50,
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
+                                                color: primaryColor
                                             ),
+                                            child: Center(child: Text("Book Again",style: TextStyle(color: whiteColor),)),
                                           ),
-                                        ):const SizedBox.shrink()
-                                      ],
-                                    )
-                                  ],
-                                ),
+                                        ),
+                                      ):const SizedBox.shrink()
+                                    ],
+                                  )
+                                ],
                               ),
                             ),
                           ],

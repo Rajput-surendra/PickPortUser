@@ -348,7 +348,7 @@ String? mId;
     DateTime now = DateTime.now();
     String formattedDateTime = "${now.year}-${now.month}-${now.day} ${now.hour}:${now.minute}:${now.second}";
      date =  formattedDateTime.substring(0,11);
-      time =  formattedDateTime.substring(9,14);
+      time =  formattedDateTime.substring(9,17);
     print('____Som__sssssss____${formattedDateTime}____${time}_____');
 
     // Data data = materialCategoryModel!.data![0].title;
@@ -440,7 +440,7 @@ String? mId;
                                   children: [
                                     Container(
                                       width: MediaQuery.of(context).size.width/1.5,
-                                        child: Text(widget.dropLocation.toString(),overflow: TextOverflow.ellipsis,maxLines: 1,))
+                                        child: Text(widget.dropLocation.toString(),overflow: TextOverflow.ellipsis,maxLines: 3,))
                                   ],
                                 )
 
@@ -1051,11 +1051,20 @@ String? mId;
                                                             // border: OutlineInputBorder(
                                                             //     borderRadius: BorderRadius.circular(10)),
                                                           ),
-                                                          validator: (value){
-                                                            if(value==null||value.isEmpty)
-                                                              return "Please enter date";
-                                                            return null;
-                                                          },
+                                                            validator: (value) {
+                                                              print('____Som______${value}_________');
+                                                              if (picUpController.text.isNotEmpty||picTimeController.text.isNotEmpty) {
+                                                                if (picUpController.text.isEmpty) {
+                                                                  return 'Please Enter Date';
+                                                                }
+                                                                // else if (gstController.text.length <15) {
+                                                                //   return 'Please enter 15 digit';
+                                                                // }
+                                                                return null;
+                                                              }
+                                                              return null;
+
+                                                            }
                                                         ),
                                                       ),
                                                     )
@@ -1107,26 +1116,17 @@ String? mId;
                                                         hintText: "Time",
                                                         counterText: '',
                                                         labelStyle: TextStyle(color: Colors.black87),
-                                                        // prefixIcon: IconButton(
-                                                        //   onPressed: null,
-                                                        //   icon: Icon(
-                                                        //     Icons.call,
-                                                        //     color: MyColorName.primaryDark,
-                                                        //   ),
-                                                        // ),
-                                                        // enabledBorder: UnderlineInputBorder(
-                                                        //   borderSide:  BorderSide(
-                                                        //     color: colors.primary,
-                                                        //   ),
-                                                        //   borderRadius: BorderRadius.circular(8.0),
-                                                        // ),
-                                                        // focusedBorder: UnderlineInputBorder(
-                                                        //   borderSide:  BorderSide(
-                                                        //     color: colors.secondary,
-                                                        //   ),
-                                                        //   borderRadius: BorderRadius.circular(8.0),
-                                                        // ),
+
                                                       ),
+                                                        validator: (value) {
+                                                          if (picUpController.text.isNotEmpty || picTimeController.text.isNotEmpty) {
+                                                            if (picTimeController.text.isEmpty) {
+                                                              return 'Please Enter Time';
+                                                            }
+                                                            return null;
+                                                          }
+                                                          return null;
+                                                        }
                                                     ),
                                                   ),
 
@@ -1165,6 +1165,9 @@ String? mId;
                                         setState(() {
 
                                         });
+                                        if(_formKey.currentState!.validate()){
+                                          senParcel();
+                                        }
                                         if(recipientNameController.text == ""){
                                           Fluttertoast.showToast(msg: "Please select receiver name");
                                           return;
@@ -1175,7 +1178,7 @@ String? mId;
                                           Fluttertoast.showToast(msg: "Please select material category");
                                           return;
                                         }else{
-                                          senParcel();
+
                                         }
                                         // if(receiverList.isEmpty) {
                                         //   if (_formKey.currentState!.validate()) {
@@ -1189,10 +1192,7 @@ String? mId;
                                       },
                                       child: Container(
                                         height: 50,
-                                        width: MediaQuery
-                                            .of(context)
-                                            .size
-                                            .width / 1.1,
+                                        width: MediaQuery.of(context).size.width / 1.1,
                                         alignment: Alignment.center,
                                         decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(10),

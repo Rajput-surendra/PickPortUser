@@ -62,6 +62,7 @@
   "Gear Vehicle": "கியர் வாகனம்",
   "Non Gear Vehicle": "நான் கியர் வாகனம்",
   "Pickup Location": "பிக் அப் இடம்",
+
   "Drop Location": "இறக்கு இடம்",
   "Type Drop Location": "இறக்கு இடத்தை தட்டச்சு செய்யுங்கள்",
   "Next": "அடுத்து",
@@ -81,7 +82,7 @@
   "Select Vchicle": "வாகனத்தை தேர்ந்தெடு",
   "Drop Point": "இறக்கு புள்ளி",
   "Pick up Point": "பிக் அப் புள்ளி",
-  "Parcel Weight (Total)": "பார்ஸல் எடை (மொத்தம்)",
+  "Parcel Weight (Total)": "திறன்",
   "Total Distance": "மொத்த இருப்பு",
   "Fare Details": "கட்டண விவரங்கள்",
   "Fare Summery": "கட்டண சுருக்கம்",

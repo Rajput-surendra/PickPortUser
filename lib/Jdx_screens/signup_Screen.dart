@@ -817,6 +817,8 @@ class _SignUpScreen extends State<SignUpScreen> {
                             setState(() {
                               _value = value!;
                               isAvailable = false;
+                              gstController.text ="";
+                              gstAddressController.text = "";
                             });
                           },
                         ),
@@ -864,13 +866,18 @@ class _SignUpScreen extends State<SignUpScreen> {
                                 maxLength: 15,
                                 controller: gstController,
                                 validator: (value) {
-                                  if (value != gstAddressController.text.isEmpty /*&& gstController.text.isEmpty*/ ) {
-                                    return 'Please GST Number';
+                                  print('____Som______${value}_________');
+                                  if (gstController.text.isNotEmpty||gstAddressController.text.isNotEmpty) {
+                                    if (gstController.text.isEmpty) {
+                                      return 'Please GST Number';
+                                    }
+                                    // else if (gstController.text.length <15) {
+                                    //   return 'Please enter 15 digit';
+                                    // }
+                                    return null;
                                   }
-                                  // else if (gstController.text.length <15) {
-                                  //   return 'Please enter 15 digit';
-                                  // }
                                   return null;
+
                                 },
                                 decoration:  InputDecoration(
                                     counterText: "",
@@ -903,12 +910,15 @@ class _SignUpScreen extends State<SignUpScreen> {
                                   border: InputBorder.none,
                                   hintText: getTranslated(context, "GST Address"),
                                 ),
-                                validator: (value) {
-                                  if (value != gstController.text && gstAddressController.text.isEmpty) {
-                                    return 'Please Enter GST Address';
+                                  validator: (value) {
+                                    if (gstController.text.isNotEmpty || gstAddressController.text.isNotEmpty) {
+                                      if (gstAddressController.text.isEmpty) {
+                                        return 'Please Enter GST Address';
+                                      }
+                                      return null;
+                                    }
+                                    return null;
                                   }
-                                  return null;
-                                },
 
                               ),
                             ),

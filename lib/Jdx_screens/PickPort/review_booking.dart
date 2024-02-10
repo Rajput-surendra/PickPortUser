@@ -166,7 +166,7 @@ class _ReviewBookingScreenState extends State<ReviewBookingScreen> {
                   borderRadius: const BorderRadius.only(topRight: Radius.circular(50))
               ),
               child:
-              Padding(
+              getVehicleModel == null ? Center(child: CircularProgressIndicator()):    Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListView(
                   shrinkWrap: true,
@@ -245,7 +245,7 @@ class _ReviewBookingScreenState extends State<ReviewBookingScreen> {
                                                                 print(testBool);
                                                               },
                                                               child: Container(
-                                                                height: 200,
+                                                                height: 210,
                                                                 width:double.infinity,
                                                                 child:  Padding(
                                                                   padding: const EdgeInsets.all(8.0),
@@ -259,7 +259,7 @@ class _ReviewBookingScreenState extends State<ReviewBookingScreen> {
                                                                        children: [
                                                                          Container(
                                                                              width: 250,
-                                                                             child: Text(widget.picLocation.toString(),overflow: TextOverflow.ellipsis,maxLines: 2,))
+                                                                             child: Text(widget.picLocation.toString(),overflow: TextOverflow.ellipsis,maxLines: 3,))
                                                                        ],
                                                                      ),
                                                                       const SizedBox(height: 10,),
@@ -271,7 +271,7 @@ class _ReviewBookingScreenState extends State<ReviewBookingScreen> {
                                                                         children: [
                                                                           Container(
                                                                               width: 250,
-                                                                              child: Text(widget.dropLocation.toString(),overflow: TextOverflow.ellipsis,maxLines: 2,))
+                                                                              child: Text(widget.dropLocation.toString(),overflow: TextOverflow.ellipsis,maxLines: 3,))
                                                                         ],
                                                                       )
 
@@ -451,7 +451,51 @@ class _ReviewBookingScreenState extends State<ReviewBookingScreen> {
                                   ),
                                 ),
                               ),
-
+                              const SizedBox(height: 10,),
+                              getVehicleModel?.data?.onDate == null ? SizedBox.shrink():   Text(getTranslated(context, "Schedule Booking"),style: const TextStyle(fontSize: 13,fontWeight: FontWeight.bold),),
+                              getVehicleModel?.data?.onDate == null ? SizedBox.shrink():   Container(
+                                width: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width / 1.1,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)
+                                  ),
+                                  child:Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text("Date",style: const TextStyle(fontWeight: FontWeight.bold)),
+                                            Align(
+                                              alignment: Alignment.topRight,
+                                              child: Text("${getVehicleModel?.data?.onDate}",overflow: TextOverflow.ellipsis,maxLines: 1,),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text("Time",style: const TextStyle(fontWeight: FontWeight.bold),),
+                                            Text("${getVehicleModel?.data?.deliveryTime}"),
+                                          ],
+                                        ),
+                                        // Row(
+                                        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        //   children: [
+                                        //     Text(getTranslated(context, "Total Distance"),style: const TextStyle(fontWeight: FontWeight.bold),),
+                                        //     Text("${getVehicleModel?.data?.maxAmount} km"),
+                                        //   ],
+                                        // ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
                               const SizedBox(height: 10,),
                               Text(getTranslated(context, "Fare Summery"),style: const TextStyle(fontSize: 13,fontWeight: FontWeight.bold),),
                               Container(

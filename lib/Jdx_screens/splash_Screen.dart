@@ -19,6 +19,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   void checkLogin()async{
     SharedPreferences pref = await SharedPreferences.getInstance();
     userid = pref.getString('userid');
+    print('____Som______${userid}_________');
      isLan  = await pref.getBool('isLanguage') ?? false;
      setState(() {
 
@@ -38,9 +39,10 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
         period: const Duration(seconds: 15),
       );
     });
-    Future.delayed(Duration(seconds: 15),(){
-      return checkLogin();
-    });
+  //  Future.delayed(Duration(seconds: 15),(){
+    //  return
+        checkLogin();
+  //  });
 
 
     Future.delayed(Duration(seconds: 8),() async {

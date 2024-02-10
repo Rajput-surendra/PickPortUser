@@ -444,7 +444,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please confirm your password';
-                                } else if (value != newpswController.text) {
+                                } else if (value != oldpswController.text) {
                                   return 'Passwords do not match';
                                 }
                                 return null;

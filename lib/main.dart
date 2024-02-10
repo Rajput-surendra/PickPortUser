@@ -15,13 +15,33 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'Helper/demo_localization.dart';
 
 Future<void> backgroundHandler(RemoteMessage message) async {
-  print(message.data.toString());
-  print(message.notification!.title);
+  debugPrint(message.data.toString());
+  //debugPrint(message.notification!.title);
+}
+Future<void> handleNotificationPermission() async {
+  const permission = Permission.notification;
+  final status = await permission.status;
+  if (status.isGranted) {
+    print('User granted this permission before');
+  } else {
+    final before = await permission.shouldShowRequestRationale;
+    final rs = await permission.request();
+    final after = await permission.shouldShowRequestRationale;
 
+    if (rs.isGranted) {
+      print('User granted notication permission');
+    } else if (!before && after) {
+      print('Show permission request pop-up and user denied first time');
+    } else if (before && !after) {
+      print('Show permission request pop-up and user denied a second time');
+    } else if (!before && !after) {
+      print('No more permission pop-ups displayed');
+    }
+  }
 }
 
 void main() async {
-
+  //await handleNotificationPermission();
 //   var status = await Permission.camera.status;
 //   if (status.isDenied) {
 //     // We haven't asked for permission yet or the permission has been denied before, but not permanently.
@@ -33,11 +53,12 @@ void main() async {
 //   }
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+   LocalNotificationService.initialize();
 
-  LocalNotificationService.initialize();
+ // LocalNotificationService.initialize();
   try {
     String? token = await FirebaseMessaging.instance.getToken();
-    print("-----------token:-----${token}");
+    print("${token}");
   } on FirebaseException {
   }
   await SystemChrome.setPreferredOrientations([

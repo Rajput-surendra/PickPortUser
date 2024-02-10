@@ -30,7 +30,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
     };
     var request = http.MultipartRequest('POST', Uri.parse('${ApiPath.baseUrl}Payment/GetNotificationList'));
     request.fields.addAll({
-      'user_id': '4'
+      'user_id': userid.toString()
     });
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
@@ -121,7 +121,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         color: backGround,
                         borderRadius: BorderRadius.only(topRight: Radius.circular(50))
                     ),
-                    child:   notificationhistory == null || notificationhistory == "" ? Center(child: CircularProgressIndicator(),) :
+                    child: notificationhistory == null || notificationhistory == "" ? Center(child: CircularProgressIndicator(),) :
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ListView.builder(
