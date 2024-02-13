@@ -361,7 +361,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
-                            child: Container(
+                            child: SizedBox(
                                 width: 250,
                                 child: Text("${addressC.text}",overflow: TextOverflow.ellipsis,maxLines: 1,style: TextStyle(color: whiteColor),)),
                           )
@@ -531,7 +531,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Column(
                                     children: [
                                       const SizedBox(height: 5,),
-                                      Container(
+                                      SizedBox(
                                        height: 80,width: 100,
                                         child: Image.asset(
                                           'assets/ProfileAssets/2 wheeler.png',height: 40,width: 40,
@@ -554,14 +554,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Column(
                                     children: [
                                       const SizedBox(height: 5,),
-                                      Container(
+                                      SizedBox(
                                         height: 80,width: 100,
                                         child: Image.asset(
                                           'assets/ProfileAssets/3 wheeler.png',height: 50,width: 50,
                                         ),
                                       ),
                                       const SizedBox(height: 5,),
-                                      Text(getTranslated(context, "3 Wheeler")),
+                                      Text(getTranslated(context, "3 Wheeler"),style: TextStyle(fontSize: 12
+
+                                      ),),
                                       const SizedBox(height: 10,),
                                     ],
                                   ),
@@ -577,14 +579,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Column(
                                     children: [
                                       const SizedBox(height: 5,),
-                                      Container(
+                                      SizedBox(
                                         height: 80,width: 100,
                                         child: Image.asset(
                                           'assets/ProfileAssets/tata ace.png',height: 50,width: 50,
                                         ),
                                       ),
                                       const SizedBox(height: 5,),
-                                      Text(getTranslated(context, "Tata Ace")),
+                                      Text(getTranslated(context, "Tata Ace"),style: const TextStyle(
+                                        fontSize: 12
+                                      ),),
                                       const SizedBox(height: 10,),
                                     ],
                                   ),
@@ -606,7 +610,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Column(
                                     children: [
                                       const SizedBox(height: 5,),
-                                      Container(
+                                      SizedBox(
                                         height: 90,width: 100,
                                         child: Image.asset(
                                           'assets/ProfileAssets/mahindra pickup.png',height: 50,width: 50,
@@ -629,7 +633,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Column(
                                     children: [
                                       const SizedBox(height: 5,),
-                                      Container(
+                                      SizedBox(
                                         height: 90,width: 100,
                                         child: Image.asset(
                                           'assets/ProfileAssets/total 407.png',height: 50,width: 50,
@@ -647,7 +651,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         const SizedBox(height: 8,),
-                        Container(
+                        SizedBox(
                           width: double.infinity,
                           child: Image.asset(
                             'assets/ProfileAssets/home1111111.png',
@@ -862,7 +866,7 @@ String orderStatus(String status ){
             title:  const Text(""),
             content:  Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
+              child: SizedBox(
                 height: 150,
 
                 width: double.infinity  ,
@@ -879,7 +883,7 @@ String orderStatus(String status ){
                           child: Column(
                             children: [
                               const SizedBox(height: 5,),
-                              Container(
+                              SizedBox(
                                 height: 90,width: 80,
                                 child: Image.asset(
                                   'assets/ProfileAssets/Gear Vehicle.png',height: 50,width: 50,
@@ -903,7 +907,7 @@ String orderStatus(String status ){
                           child: Column(
                             children: [
                               const SizedBox(height: 5,),
-                              Container(
+                              SizedBox(
                                 height: 90,width: 80,
                                 child: Image.asset(
                                   'assets/ProfileAssets/non gear.png',height: 50,width: 50,
