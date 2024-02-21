@@ -329,6 +329,7 @@ class _RegistParcelScreenState extends State<RegistParcelScreen> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) => PlacePicker(
+                                              hintText:getTranslated(context, "Pickup Location"),
                                               apiKey: Platform.isAndroid
                                                   ? "AIzaSyB0uPBgryG9RisP8_0v50Meds1ZePMwsoY"
                                                   : "AIzaSyB0uPBgryG9RisP8_0v50Meds1ZePMwsoY",
@@ -401,6 +402,7 @@ class _RegistParcelScreenState extends State<RegistParcelScreen> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) => PlacePicker(
+                                              hintText: "Drop Location",
                                               apiKey: Platform.isAndroid
                                                   ? "AIzaSyB0uPBgryG9RisP8_0v50Meds1ZePMwsoY"
                                                   : "AIzaSyB0uPBgryG9RisP8_0v50Meds1ZePMwsoY",

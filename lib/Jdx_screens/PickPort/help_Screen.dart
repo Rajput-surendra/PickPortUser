@@ -172,7 +172,6 @@ GetHelpModel? getHelpModel;
                     Expanded(child: SizedBox(
                       child: Center(child: Text(getTranslated(context, "GET_HELP"),style: TextStyle(color: whiteColor,fontSize: 18),)),
                     )),
-
                     // Container(
                     //   height: 40,
                     //   width: 40,

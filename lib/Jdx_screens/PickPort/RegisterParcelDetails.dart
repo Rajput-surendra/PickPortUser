@@ -316,7 +316,7 @@ String? mId;
                  colorScheme:  ColorScheme.light(primary:  primaryColor),
                  // ColorScheme.light(primary: const Color(0xFFEB6C67)),
                  buttonTheme:
-                 ButtonThemeData(textTheme: ButtonTextTheme.accent)),
+                 const ButtonThemeData(textTheme: ButtonTextTheme.accent)),
              child: child!,
            );
          });
@@ -356,7 +356,7 @@ String? mId;
       backgroundColor: primaryColor,
       body: Column(
         children: [
-          SizedBox(height: 25,),
+          const SizedBox(height: 25,),
           Expanded(
             flex: 2,
             child: Padding(
@@ -375,7 +375,7 @@ String? mId;
                           color: whiteColor,
                           borderRadius: BorderRadius.circular(100)
                       ),
-                      child: Center(child: Icon(Icons.arrow_back)),
+                      child: const Center(child: Icon(Icons.arrow_back)),
                     ),
                   ),
                   Text("Booking Details",style: TextStyle(color: whiteColor,fontSize: 18),),
@@ -410,7 +410,7 @@ String? mId;
             child: Container(
               decoration: BoxDecoration(
                   color: backGround,
-                  borderRadius: BorderRadius.only(topRight: Radius.circular(50))
+                  borderRadius: const BorderRadius.only(topRight: Radius.circular(50))
               ),
               child:
               ListView(
@@ -435,7 +435,7 @@ String? mId;
                                     'assets/ProfileAssets/drop location.png',scale: 1.1,
                                   ),
                                 ),
-                                SizedBox(width: 5,),
+                                const SizedBox(width: 5,),
                                 Column(
                                   children: [
                                     Container(
@@ -623,15 +623,15 @@ String? mId;
                           // ),
 
                           ///recipentdetails
-                           SizedBox(height: 15,),
+                           const SizedBox(height: 15,),
                           Center(
                             child: Padding(
                               padding: const EdgeInsets.only(left: 15),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(getTranslated(context, "House/ Apartment (Optional)"),style: TextStyle(fontSize: 13),),
-                                  SizedBox(height: 5,),
+                                  Text(getTranslated(context, "House/ Apartment (Optional)"),style: const TextStyle(fontSize: 13),),
+                                  const SizedBox(height: 5,),
                                   Material(
                                     color: whiteColor,
                                     elevation: 1,
@@ -660,8 +660,8 @@ String? mId;
                                     ),
                                   ),
                                   const SizedBox(height: 15,),
-                                  Text(getTranslated(context, "Receiver's Name"),style: TextStyle(fontSize: 13),),
-                                  SizedBox(height: 5,),
+                                  Text(getTranslated(context, "Receiver's Name"),style: const TextStyle(fontSize: 13),),
+                                  const SizedBox(height: 5,),
                                   Material(
                                     color: whiteColor,
                                     elevation: 1,
@@ -690,8 +690,8 @@ String? mId;
                                     ),
                                   ),
                                   const SizedBox(height: 15,),
-                                  Text(getTranslated(context, "Receiver's Mobile Number"),style: TextStyle(fontSize: 13),),
-                                  SizedBox(height: 5,),
+                                  Text(getTranslated(context, "Receiver's Mobile Number"),style: const TextStyle(fontSize: 13),),
+                                  const SizedBox(height: 5,),
                                   Material(
                                     color: whiteColor,
                                     elevation: 1,
@@ -724,8 +724,8 @@ String? mId;
                                     ),
                                   ),
                                   const SizedBox(height: 15,),
-                                  Text(getTranslated(context, "Parcel Details"),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
-                                  SizedBox(height: 5,),
+                                  Text(getTranslated(context, "Parcel Details"),style: const TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                                  const SizedBox(height: 5,),
                                   Material(
                                     color: whiteColor,
                                     elevation: 1,
@@ -741,7 +741,7 @@ String? mId;
                                         underline: Container(),
                                         value: selectedValue,
                                         hint:  Padding(
-                                          padding: EdgeInsets.only(left: 5,top: 5),
+                                          padding: const EdgeInsets.only(left: 5,top: 5),
                                           child: Text(getTranslated(context, "Material Category")),
                                         ),
                                         icon: Padding(
@@ -945,7 +945,7 @@ String? mId;
                                   //   ),
                                   // ),
                                   const SizedBox(height: 15,),
-                                  Text(getTranslated(context, "Booking Type"),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                                  Text(getTranslated(context, "Booking Type"),style: const TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
                                   Row(
                                     children: [
                                       Radio(
@@ -967,7 +967,7 @@ String? mId;
                                       ),
                                       Text(
                                         getTranslated(context, "Current Booking"),
-                                        style: TextStyle(fontSize: 12),
+                                        style: const TextStyle(fontSize: 12),
                                       ),
 
                                       Radio(
@@ -988,7 +988,7 @@ String? mId;
                                       // SizedBox(width: 10.0,),
                                       Text(
                                         getTranslated(context, "Schedule Booking"),
-                                        style: TextStyle(fontSize: 12),
+                                        style: const TextStyle(fontSize: 12),
                                       ),
                                     ],
                                   ),
@@ -1000,7 +1000,7 @@ String? mId;
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        Text(getTranslated(context, "Pickup Date and Time"),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                                        Text(getTranslated(context, "Pickup Date and Time"),style: const TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
                                           Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
@@ -1010,7 +1010,7 @@ String? mId;
                                                        DateTime? datePicked = await showDatePicker(
                                                         context: context,
                                                         initialDate: DateTime.now(),
-                                                        firstDate: DateTime.now().subtract(Duration(days: 0)),
+                                                        firstDate: DateTime.now().subtract(const Duration(days: 0)),
                                                         lastDate: DateTime(2100),
                                                       );
 
@@ -1045,9 +1045,9 @@ String? mId;
                                                           controller: picUpController,
                                                           decoration:  InputDecoration(
                                                               border:InputBorder.none,
-                                                              contentPadding: EdgeInsets.only(top: 13,left: 10),
+                                                              contentPadding: const EdgeInsets.only(top: 13,left: 10),
                                                               suffixIcon: Icon(Icons.calendar_month,color:Secondry),
-                                                              hintText: 'Date',hintStyle: TextStyle(fontSize: 15)
+                                                              hintText: 'Date',hintStyle: const TextStyle(fontSize: 15)
                                                             // border: OutlineInputBorder(
                                                             //     borderRadius: BorderRadius.circular(10)),
                                                           ),
@@ -1072,7 +1072,7 @@ String? mId;
                                               Expanded(
                                                 child: Card(
                                                   elevation: 1,
-                                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(3))),
+                                                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(3))),
                                                   child:
                                                   Container(
                                                     height: 50,
@@ -1115,7 +1115,7 @@ String? mId;
                                                         filled: true,
                                                         hintText: "Time",
                                                         counterText: '',
-                                                        labelStyle: TextStyle(color: Colors.black87),
+                                                        labelStyle: const TextStyle(color: Colors.black87),
 
                                                       ),
                                                         validator: (value) {
@@ -1136,7 +1136,7 @@ String? mId;
                                           )
 
                                     ],),
-                                  ):SizedBox(),
+                                  ):const SizedBox(),
                                   // isCurrent == false ? Padding(
                                   //   padding: const EdgeInsets.only(left: 0,right: 20),
                                   //   child: Row(
@@ -1159,7 +1159,7 @@ String? mId;
                                   //     ],
                                   //   ),
                                   // ) :SizedBox(),
-                                  SizedBox(height: 20,),
+                                  const SizedBox(height: 20,),
                                   InkWell(
                                       onTap: () {
                                         setState(() {
@@ -1211,13 +1211,13 @@ String? mId;
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,),),
                                       )),
-                                  SizedBox(height: 20,),
+                                  const SizedBox(height: 20,),
                                 ],),
                             ),
                           ),
 
                           ///parceldetails
-                          SizedBox(height: 20,),
+                          const SizedBox(height: 20,),
 
                         //   Center(
                         //       child: Column(
