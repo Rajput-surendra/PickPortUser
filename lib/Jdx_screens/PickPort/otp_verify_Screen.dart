@@ -42,7 +42,7 @@ class _VerrifyScreenState extends State<VerrifyScreen> {
     request.fields.addAll({
       'mobile': widget.mobile.toString(),
       'otp': widget.otp.toString(),
-      'firebaseToken':token.toString()
+        'firebaseToken':token.toString()
     });
     print('____Som______${request.fields}_________');
     request.headers.addAll(headers);

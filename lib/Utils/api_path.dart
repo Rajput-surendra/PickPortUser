@@ -1,27 +1,5 @@
 
-// class ApiPath{
-//
-//   static const String baseUrl ="https://developmentalphawizz.com/pickport/api/";
-//   static const String imgUrl = 'https://developmentalphawizz.com/pickport/api/';
-//   static const String imgUrl1 = 'https://developmentalphawizz.com/pickport/api/Authentication/profile_pics/';
-//
-//   static const String login = baseUrl +'Authentication/login';
-//   static const String registration = baseUrl +'Authentication/ragistration';
-//   static const String update_profile = baseUrl+'User_Dashboard/updateUserProfile';
-//   static const String get_profile = baseUrl+ 'User_Dashboard/getUserProfile';
-//   static const String show_details = baseUrl+ 'show_details';
-//   static const String changepaasword = baseUrl+ 'Authentication/changePassword';
-//   static const String privacypolicy = baseUrl+ 'users/Privacy';
-//   static const String feedback = baseUrl+ 'show_details';
-//   static const String parcelhistory = baseUrl+ 'payment/parcel_history';
-//   static const String termsandcondition = baseUrl+ 'Users/TermsCondition';
-//   static const String contactus = baseUrl+ 'Users/ContactUs';
-//   static const String notification = baseUrl+ 'Payment/GetNotificationList';
-//
-// }
-
 class ApiPath{
-
   static const String baseUrl ="https://developmentalphawizz.com/pickport/api/";
   static const String imgUrl = 'https://developmentalphawizz.com/pickport/upload/';
   static const String imgUrl1 = 'https://developmentalphawizz.com/';
